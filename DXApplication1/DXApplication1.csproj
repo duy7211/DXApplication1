@@ -77,6 +77,12 @@
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="PCCongViec\PhanCongCV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PCCongViec\PhanCongCV.Designer.cs">
+      <DependentUpon>PhanCongCV.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLGV\Giangvien.cs" />
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PCCongViec\PhanCongCV.resx">
+      <DependentUpon>PhanCongCV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">

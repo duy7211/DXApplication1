@@ -6,6 +6,7 @@ using DevExpress.UserSkins;
 using DevExpress.Skins;
 using DXApplication1.QLLopHoc;
 using DXApplication1.QLMonHoc;
+using DXApplication1.PCCongViec;
 
 namespace DXApplication1
 {
@@ -19,7 +20,7 @@ namespace DXApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new PhanCongCV());
         }
     }
 }

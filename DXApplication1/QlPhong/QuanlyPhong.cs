@@ -65,6 +65,7 @@ namespace DXApplication1.QlPhong
             {
                 con.Open();
                 DataTable dt = new DataTable();
+                
                 SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Phong", con);
                 dataAdapter.Fill(dt);
                 dataGridView1.DataSource = dt;
