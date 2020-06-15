@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Forms;
 using DevExpress.UserSkins;
 using DevExpress.Skins;
+using DXApplication1.QLLopHoc;
 
 namespace DXApplication1
 {
@@ -17,7 +18,7 @@ namespace DXApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanlyGV());
+            Application.Run(new QuanlyLop());
         }
     }
 }
