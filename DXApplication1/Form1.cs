@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DXApplication1.QLLopHoc;
+using DXApplication1.QLMonHoc;
+using DXApplication1.QlPhong;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -48,6 +51,27 @@ namespace DXApplication1
             QuanlyGV gv = new QuanlyGV();
             gv.MdiParent = this;
             gv.Show();
+        }
+
+        private void barbtnLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            QuanlyLop l = new QuanlyLop();
+            l.MdiParent = this;
+            l.Show();
+        }
+
+        private void barbtnphong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            QuanlyPhong p = new QuanlyPhong();
+            p.MdiParent = this;
+            p.Show();
+        }
+
+        private void barbtnMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            QuanLyMonHoc mh = new QuanLyMonHoc();
+            mh.MdiParent = this;
+            mh.Show();
         }
     }
 }

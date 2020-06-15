@@ -98,6 +98,12 @@
     <Compile Include="QLMonHoc\QuanLyMonHoc.Designer.cs">
       <DependentUpon>QuanLyMonHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="QlPhong\QuanlyPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QlPhong\QuanlyPhong.Designer.cs">
+      <DependentUpon>QuanlyPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="QuanlyTK.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QLMonHoc\QuanLyMonHoc.resx">
       <DependentUpon>QuanLyMonHoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QlPhong\QuanlyPhong.resx">
+      <DependentUpon>QuanlyPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="QuanlyTK.resx">
       <DependentUpon>QuanlyTK.cs</DependentUpon>

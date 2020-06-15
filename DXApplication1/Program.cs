@@ -19,7 +19,7 @@ namespace DXApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QuanLyMonHoc());
+            Application.Run(new Form1());
         }
     }
 }
