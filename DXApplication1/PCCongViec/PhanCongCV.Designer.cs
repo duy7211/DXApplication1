@@ -33,26 +33,26 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PhanCongCV));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
-            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
-            this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.cbGV = new System.Windows.Forms.ComboBox();
-            this.cbLop = new System.Windows.Forms.ComboBox();
-            this.cbMH = new System.Windows.Forms.ComboBox();
-            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
-            this.cbKhoa = new System.Windows.Forms.ComboBox();
             this.MasoPC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tenlop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhoaHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
+            this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.tbid = new DevExpress.XtraEditors.TextEdit();
+            this.cbKhoa = new System.Windows.Forms.ComboBox();
+            this.cbMH = new System.Windows.Forms.ComboBox();
+            this.cbLop = new System.Windows.Forms.ComboBox();
+            this.labelControl5 = new DevExpress.XtraEditors.LabelControl();
+            this.cbGV = new System.Windows.Forms.ComboBox();
+            this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
+            this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,6 +105,41 @@
             this.dataGridView1.TabIndex = 23;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
+            // MasoPC
+            // 
+            this.MasoPC.DataPropertyName = "MasoPC";
+            this.MasoPC.HeaderText = "Mã số phân công";
+            this.MasoPC.Name = "MasoPC";
+            this.MasoPC.ReadOnly = true;
+            // 
+            // Hoten
+            // 
+            this.Hoten.DataPropertyName = "Hoten";
+            this.Hoten.HeaderText = "Họ tên giảng viên";
+            this.Hoten.Name = "Hoten";
+            this.Hoten.ReadOnly = true;
+            // 
+            // TenMH
+            // 
+            this.TenMH.DataPropertyName = "TenMH";
+            this.TenMH.HeaderText = "Tên môn học";
+            this.TenMH.Name = "TenMH";
+            this.TenMH.ReadOnly = true;
+            // 
+            // Tenlop
+            // 
+            this.Tenlop.DataPropertyName = "Tenlop";
+            this.Tenlop.HeaderText = "Tên lớp";
+            this.Tenlop.Name = "Tenlop";
+            this.Tenlop.ReadOnly = true;
+            // 
+            // KhoaHoc
+            // 
+            this.KhoaHoc.DataPropertyName = "KhoaHoc";
+            this.KhoaHoc.HeaderText = "Khóa";
+            this.KhoaHoc.Name = "KhoaHoc";
+            this.KhoaHoc.ReadOnly = true;
+            // 
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.btnThem);
@@ -154,6 +189,7 @@
             this.btnXoa.Size = new System.Drawing.Size(89, 45);
             this.btnXoa.TabIndex = 9;
             this.btnXoa.Text = "Xóa";
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
             // 
             // groupBox1
             // 
@@ -174,6 +210,77 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phân công";
             // 
+            // tbid
+            // 
+            this.tbid.Location = new System.Drawing.Point(136, 24);
+            this.tbid.Name = "tbid";
+            this.tbid.Size = new System.Drawing.Size(249, 20);
+            this.tbid.TabIndex = 4;
+            // 
+            // cbKhoa
+            // 
+            this.cbKhoa.FormattingEnabled = true;
+            this.cbKhoa.Location = new System.Drawing.Point(136, 110);
+            this.cbKhoa.Name = "cbKhoa";
+            this.cbKhoa.Size = new System.Drawing.Size(249, 21);
+            this.cbKhoa.TabIndex = 3;
+            // 
+            // cbMH
+            // 
+            this.cbMH.FormattingEnabled = true;
+            this.cbMH.Location = new System.Drawing.Point(136, 137);
+            this.cbMH.Name = "cbMH";
+            this.cbMH.Size = new System.Drawing.Size(249, 21);
+            this.cbMH.TabIndex = 3;
+            // 
+            // cbLop
+            // 
+            this.cbLop.FormattingEnabled = true;
+            this.cbLop.Location = new System.Drawing.Point(136, 83);
+            this.cbLop.Name = "cbLop";
+            this.cbLop.Size = new System.Drawing.Size(249, 21);
+            this.cbLop.TabIndex = 2;
+            // 
+            // labelControl5
+            // 
+            this.labelControl5.Location = new System.Drawing.Point(75, 115);
+            this.labelControl5.Name = "labelControl5";
+            this.labelControl5.Size = new System.Drawing.Size(24, 13);
+            this.labelControl5.TabIndex = 0;
+            this.labelControl5.Text = "Khóa";
+            // 
+            // cbGV
+            // 
+            this.cbGV.FormattingEnabled = true;
+            this.cbGV.Location = new System.Drawing.Point(136, 50);
+            this.cbGV.Name = "cbGV";
+            this.cbGV.Size = new System.Drawing.Size(249, 21);
+            this.cbGV.TabIndex = 1;
+            // 
+            // labelControl4
+            // 
+            this.labelControl4.Location = new System.Drawing.Point(75, 142);
+            this.labelControl4.Name = "labelControl4";
+            this.labelControl4.Size = new System.Drawing.Size(44, 13);
+            this.labelControl4.TabIndex = 0;
+            this.labelControl4.Text = "Môn học:";
+            // 
+            // labelControl3
+            // 
+            this.labelControl3.Location = new System.Drawing.Point(75, 86);
+            this.labelControl3.Name = "labelControl3";
+            this.labelControl3.Size = new System.Drawing.Size(21, 13);
+            this.labelControl3.TabIndex = 0;
+            this.labelControl3.Text = "Lớp:";
+            // 
+            // labelControl2
+            // 
+            this.labelControl2.Location = new System.Drawing.Point(75, 50);
+            this.labelControl2.Name = "labelControl2";
+            this.labelControl2.Size = new System.Drawing.Size(54, 13);
+            this.labelControl2.TabIndex = 0;
+            this.labelControl2.Text = "Giảng viên:";
+            // 
             // labelControl1
             // 
             this.labelControl1.Appearance.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -185,112 +292,6 @@
             this.labelControl1.Size = new System.Drawing.Size(195, 23);
             this.labelControl1.TabIndex = 20;
             this.labelControl1.Text = "Phân công công việc";
-            // 
-            // labelControl2
-            // 
-            this.labelControl2.Location = new System.Drawing.Point(75, 50);
-            this.labelControl2.Name = "labelControl2";
-            this.labelControl2.Size = new System.Drawing.Size(54, 13);
-            this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "Giảng viên:";
-            // 
-            // labelControl3
-            // 
-            this.labelControl3.Location = new System.Drawing.Point(75, 86);
-            this.labelControl3.Name = "labelControl3";
-            this.labelControl3.Size = new System.Drawing.Size(21, 13);
-            this.labelControl3.TabIndex = 0;
-            this.labelControl3.Text = "Lớp:";
-            // 
-            // labelControl4
-            // 
-            this.labelControl4.Location = new System.Drawing.Point(75, 142);
-            this.labelControl4.Name = "labelControl4";
-            this.labelControl4.Size = new System.Drawing.Size(44, 13);
-            this.labelControl4.TabIndex = 0;
-            this.labelControl4.Text = "Môn học:";
-            // 
-            // cbGV
-            // 
-            this.cbGV.FormattingEnabled = true;
-            this.cbGV.Location = new System.Drawing.Point(136, 50);
-            this.cbGV.Name = "cbGV";
-            this.cbGV.Size = new System.Drawing.Size(249, 21);
-            this.cbGV.TabIndex = 1;
-            // 
-            // cbLop
-            // 
-            this.cbLop.FormattingEnabled = true;
-            this.cbLop.Location = new System.Drawing.Point(136, 83);
-            this.cbLop.Name = "cbLop";
-            this.cbLop.Size = new System.Drawing.Size(249, 21);
-            this.cbLop.TabIndex = 2;
-            // 
-            // cbMH
-            // 
-            this.cbMH.FormattingEnabled = true;
-            this.cbMH.Location = new System.Drawing.Point(136, 137);
-            this.cbMH.Name = "cbMH";
-            this.cbMH.Size = new System.Drawing.Size(249, 21);
-            this.cbMH.TabIndex = 3;
-            // 
-            // labelControl5
-            // 
-            this.labelControl5.Location = new System.Drawing.Point(75, 115);
-            this.labelControl5.Name = "labelControl5";
-            this.labelControl5.Size = new System.Drawing.Size(24, 13);
-            this.labelControl5.TabIndex = 0;
-            this.labelControl5.Text = "Khóa";
-            // 
-            // cbKhoa
-            // 
-            this.cbKhoa.FormattingEnabled = true;
-            this.cbKhoa.Location = new System.Drawing.Point(136, 110);
-            this.cbKhoa.Name = "cbKhoa";
-            this.cbKhoa.Size = new System.Drawing.Size(249, 21);
-            this.cbKhoa.TabIndex = 3;
-            // 
-            // MasoPC
-            // 
-            this.MasoPC.DataPropertyName = "MasoPC";
-            this.MasoPC.HeaderText = "Mã số phân công";
-            this.MasoPC.Name = "MasoPC";
-            this.MasoPC.ReadOnly = true;
-            // 
-            // Hoten
-            // 
-            this.Hoten.DataPropertyName = "Hoten";
-            this.Hoten.HeaderText = "Họ tên giảng viên";
-            this.Hoten.Name = "Hoten";
-            this.Hoten.ReadOnly = true;
-            // 
-            // TenMH
-            // 
-            this.TenMH.DataPropertyName = "TenMH";
-            this.TenMH.HeaderText = "Tên môn học";
-            this.TenMH.Name = "TenMH";
-            this.TenMH.ReadOnly = true;
-            // 
-            // Tenlop
-            // 
-            this.Tenlop.DataPropertyName = "Tenlop";
-            this.Tenlop.HeaderText = "Tên lớp";
-            this.Tenlop.Name = "Tenlop";
-            this.Tenlop.ReadOnly = true;
-            // 
-            // KhoaHoc
-            // 
-            this.KhoaHoc.DataPropertyName = "KhoaHoc";
-            this.KhoaHoc.HeaderText = "Khóa";
-            this.KhoaHoc.Name = "KhoaHoc";
-            this.KhoaHoc.ReadOnly = true;
-            // 
-            // tbid
-            // 
-            this.tbid.Location = new System.Drawing.Point(136, 24);
-            this.tbid.Name = "tbid";
-            this.tbid.Size = new System.Drawing.Size(249, 20);
-            this.tbid.TabIndex = 4;
             // 
             // PhanCongCV
             // 

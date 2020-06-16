@@ -16,6 +16,11 @@ namespace DXApplication1.PCCongViec
 {
     public partial class PhanCongCV : Form
     {
+        public string gv = "";
+        public string mh = "";
+        public string lop = "";
+        public string khoa = "";
+        //public string idpc = "";
         public PhanCongCV()
         {
             InitializeComponent();
@@ -145,10 +150,7 @@ namespace DXApplication1.PCCongViec
         }
         public void clear()
         {
-            cbGV.SelectedIndex = -1;
-            cbKhoa.SelectedIndex = -1;
-            cbLop.SelectedIndex = -1;
-            cbMH.SelectedIndex = -1;
+            
             tbid.Text = "";
         }
         public void GetAllPC()
@@ -205,10 +207,10 @@ namespace DXApplication1.PCCongViec
             }
             if (khoa != "" && giangvien !="" && lop!="" && mh != "")
             {
-                string id = createID();
+                //string id = createID();
                 con.Open();
-                SqlCommand cmd = new SqlCommand("insert into PhancongCV(MasoPC,MasoGV,MasoMH,MasoLop) values(@id,@gv,@mh,@l)", con);
-                cmd.Parameters.AddWithValue("@id", id);
+                SqlCommand cmd = new SqlCommand("insert into PhancongCV(MasoGV,MasoMH,MasoLop) values(@gv,@mh,@l)", con);
+                //cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@gv", giangvien);
                 cmd.Parameters.AddWithValue("@mh", mh);
                 cmd.Parameters.AddWithValue("@l", malop);
@@ -223,7 +225,7 @@ namespace DXApplication1.PCCongViec
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("ID: "+id+" GV: "+giangvien+" MH: "+mh+" LOP: "+malop+"");
+                    MessageBox.Show("Thêm thất bại");
 
                 }
                 finally
@@ -266,10 +268,10 @@ namespace DXApplication1.PCCongViec
             if (khoa != "" && giangvien != "" && lop != "" && mh != "")
             {
                 string idpc = tbid.Text;
-                string id = createID();
+                
                 con.Open();
                 SqlCommand cmd = new SqlCommand("update PhancongCV set MasoGV=@gv,MasoMH=@mh,MasoLop=@l where MasoPC=@idpc", con);
-                cmd.Parameters.AddWithValue("@id", id);
+                
                 cmd.Parameters.AddWithValue("@gv", giangvien);
                 cmd.Parameters.AddWithValue("@mh", mh);
                 cmd.Parameters.AddWithValue("@l", malop);
@@ -298,23 +300,93 @@ namespace DXApplication1.PCCongViec
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            clear();
-
-            /*if (dataGridView1.Rows.Count > 0)
+            //clear();
+            
+            if (dataGridView1.Rows.Count > 0)
             {
                 
                  foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                  {
                      tbid.Text = row.Cells[0].Value.ToString();
-                     cbGV.SelectedText = row.Cells[1].Value.ToString();
-                     cbMH.SelectedText = row.Cells[2].Value.ToString();
-                     cbLop.SelectedText = row.Cells[3].Value.ToString();
-                     cbKhoa.SelectedText = row.Cells[4].Value.ToString();
+                     //cbGV.SelectedText = row.Cells[1].Value.ToString();
+                     mh = row.Cells[2].Value.ToString();
+                     lop = row.Cells[3].Value.ToString();
+                     khoa = row.Cells[4].Value.ToString();
+                     gv = row.Cells[1].Value.ToString();
 
-                 } 
+                 }
                 
-            }*/
-            
+            }
+            int indexgv = cbGV.FindString(gv);
+            cbGV.SelectedIndex = indexgv;
+            int indexmh = cbMH.FindString(mh);
+            cbMH.SelectedIndex = indexmh;
+            int indexlop = cbLop.FindString(lop);
+            cbLop.SelectedIndex = indexlop;
+            int indexkhoa = cbKhoa.FindString(khoa);
+            cbKhoa.SelectedIndex = indexkhoa;
+
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            string khoa = cbKhoa.SelectedValue.ToString();
+            string giangvien = cbGV.SelectedValue.ToString();
+            string lop = cbLop.SelectedValue.ToString();
+            string mh = cbMH.SelectedValue.ToString();
+            string malop = "";
+            SqlConnection con = Connect.GetDBConnection();
+            //lấy mã lớp
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter ad = new SqlDataAdapter("select MasoLop from Lop where Tenlop=N'" + lop + "' and KhoaHoc=N'" + khoa + "'", con);
+                ad.Fill(dt);
+                //TenLop= N'"+ lop +"',
+                malop = dt.Rows[0][0].ToString();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không lấy được mã lớp!");
+                //MessageBox.Show("Tên lớp: " + lop + " Khóa: " + khoa);
+            }
+            finally
+            {
+                con.Close();
+            }
+            if (khoa != "" && giangvien != "" && lop != "" && mh != "")
+            {
+                string idpc = tbid.Text;
+               
+                con.Open();
+                SqlCommand cmd = new SqlCommand("delete from PhancongCV where MasoPC=@idpc", con);
+                
+                cmd.Parameters.AddWithValue("@gv", giangvien);
+                cmd.Parameters.AddWithValue("@mh", mh);
+                cmd.Parameters.AddWithValue("@l", malop);
+                cmd.Parameters.AddWithValue("@idpc", idpc);
+                try
+                {
+
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Xóa thành công thành Công !");
+                    //clear();
+
+
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Xóa thất bại!");
+
+                }
+                finally
+                {
+                    con.Close();
+                    GetAllPC();
+                }
+            }
         }
     }
 }

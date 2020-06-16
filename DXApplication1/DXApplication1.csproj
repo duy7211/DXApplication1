@@ -118,6 +118,12 @@
     </Compile>
     <Compile Include="Session.cs" />
     <Compile Include="user.cs" />
+    <Compile Include="XepTKB\FrXepTKB.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="XepTKB\FrXepTKB.Designer.cs">
+      <DependentUpon>FrXepTKB.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Changepw.resx">
       <DependentUpon>Changepw.cs</DependentUpon>
     </EmbeddedResource>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuanlyTK.resx">
       <DependentUpon>QuanlyTK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="XepTKB\FrXepTKB.resx">
+      <DependentUpon>FrXepTKB.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="App.config" />
     <None Include="Properties\Settings.settings">
