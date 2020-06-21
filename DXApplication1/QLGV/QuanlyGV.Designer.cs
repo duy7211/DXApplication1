@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanlyGV));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.tbMaso = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
@@ -74,7 +75,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(298, 12);
+            this.labelControl1.Location = new System.Drawing.Point(366, 12);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(195, 24);
             this.labelControl1.TabIndex = 0;
@@ -235,7 +236,7 @@
             this.groupBox1.Controls.Add(this.labelControl4);
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(23, 66);
+            this.groupBox1.Location = new System.Drawing.Point(91, 66);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(640, 178);
             this.groupBox1.TabIndex = 8;
@@ -247,7 +248,7 @@
             this.groupBox2.Controls.Add(this.btnThem);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.btnXoa);
-            this.groupBox2.Location = new System.Drawing.Point(669, 66);
+            this.groupBox2.Location = new System.Drawing.Point(737, 66);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(136, 178);
             this.groupBox2.TabIndex = 9;
@@ -288,14 +289,22 @@
             this.NSinh,
             this.Que,
             this.SĐT});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gv1.DefaultCellStyle = dataGridViewCellStyle2;
             this.gv1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.gv1.Location = new System.Drawing.Point(0, 250);
             this.gv1.MultiSelect = false;
             this.gv1.Name = "gv1";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.gv1.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.gv1.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.gv1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gv1.Size = new System.Drawing.Size(843, 222);
+            this.gv1.Size = new System.Drawing.Size(956, 222);
             this.gv1.TabIndex = 10;
             this.gv1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gv1_CellClick);
             // 
@@ -339,13 +348,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(843, 472);
+            this.ClientSize = new System.Drawing.Size(956, 472);
             this.Controls.Add(this.gv1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl1);
             this.Name = "QuanlyGV";
-            this.Text = "QuanlyGV";
+            this.Text = "Quản lý Thông tin Giảng Viên";
+            this.Load += new System.EventHandler(this.QuanlyGV_Load);
             this.Click += new System.EventHandler(this.QuanlyGV_Click);
             ((System.ComponentModel.ISupportInitialize)(this.tbMaso.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbHoten.Properties)).EndInit();

@@ -265,7 +265,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl1);
             this.Name = "QuanLyMonHoc";
-            this.Text = "QuanLyMonHoc";
+            this.Text = "Quản lý môn học";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

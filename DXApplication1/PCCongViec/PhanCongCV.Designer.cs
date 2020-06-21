@@ -303,7 +303,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl1);
             this.Name = "PhanCongCV";
-            this.Text = "PhanCongCV";
+            this.Text = "Phân công công việc";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

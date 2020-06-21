@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Data.Async;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.Design;
@@ -14,10 +15,12 @@ namespace DXApplication1.XepTKB
 {
     public partial class FrXepTKB : Form
     {
-       
+        
         public FrXepTKB()
         {
             InitializeComponent();
+            tkb();
+            
         }
 
         private void simpleButton1_Click(object sender, EventArgs e)
@@ -42,7 +45,7 @@ namespace DXApplication1.XepTKB
                 foreach (DataRow row in dt.Rows)
                 {
                     //lấy mã số pc
-                    
+                   
                     string msl = row["MasoLop"].ToString();
                     DataTable dtPC = new DataTable();
                     SqlDataAdapter adp = new SqlDataAdapter("select MasoPC from PhancongCV where MasoLop = '" + msl + "'", con);
@@ -51,7 +54,7 @@ namespace DXApplication1.XepTKB
                     //lấy mã tg làm việc
                     
                     DataTable tg = new DataTable();
-                    SqlDataAdapter ad = new SqlDataAdapter("select MasoTG from ThoiGianLamviec except select MasoTG from ThoiKB", con);
+                    SqlDataAdapter ad = new SqlDataAdapter("select MasoTG,MasoPhong,MasoCa,Thu from ThoiGianLamviec tg except select tkb.MasoTG, MasoPhong, MasoCa, Thu from ThoiKB tkb, ThoiGianLamviec tg where tkb.MasoTG = tg.MasoTG", con);
                     ad.Fill(tg);
 
                     //lấy danh sách mã tg trong tkb
@@ -62,11 +65,12 @@ namespace DXApplication1.XepTKB
                     //DataTable tg = DataTgLamviec();
                     int[,] arr = new int[dtPC.Rows.Count, dt.Rows.Count];
                     List<int> a = new List<int>();
-                    dataGridView1.DataSource = dtPC;
+                    //dataGridView1.DataSource = dtPC;
                     int[] intarr = new int[tg.Rows.Count];
-
+                    
                     for(int i = 0; i< tg.Rows.Count; i++)
                     {
+                       
                         intarr[i] = (int)tg.Rows[i]["MasoTG"];
                     }
 
@@ -85,6 +89,9 @@ namespace DXApplication1.XepTKB
                         //MessageBox.Show(intarr[i].ToString());
                     }
 
+                    //get tkb
+                    
+
 
                     Random rd = new Random();
                     List<int> num = new List<int>();
@@ -94,38 +101,17 @@ namespace DXApplication1.XepTKB
                         do
                         {
                             number = intarr[rd.Next(0, intarr.Length)];
-                            //intarr[}
-                            /*foreach(DataRow t in dt_TG_TKB.Rows)
-                            {
-                                if(number == (int)t["MasoTG"])
-                                {
-                                    ++number;
-                                } */
-
+                      
                         } while (num.Contains(number));
                         num.Add(number);
                        
                     }
-                    //MessageBox.Show(min + "-" + max);
-                    //MessageBox.Show(dtPC.Rows.Count + " - " + tg.Rows.Count);
-                    /*
-                    for (int i = 0; i < dtPC.Rows.Count; i++)
-                    {
-                        int index = rd.Next(min, max);
-                        if (num.Contains(index))
-                        {
-                            i--;
-                            continue;
-                        }
-                        num.Add(index);
-                        MessageBox.Show(index.ToString());
-                    }*/
-
+                   
                     //thêm pc & tg vào arr
                     for (int i = 0; i < dtPC.Rows.Count; i++)
                     {
 
-                        int index = rd.Next(0, tg.Rows.Count);
+                        //int index = rd.Next(0, tg.Rows.Count);
                         arr[i, 0] = (int)dtPC.Rows[i][0];
                         arr[i, 1] = num[i];
 
@@ -136,7 +122,8 @@ namespace DXApplication1.XepTKB
                     {
                         string pccv = arr[i, 0].ToString();
                         string tgcv = arr[i, 1].ToString();
-                        //MessageBox.Show(arr[i, 0].ToString() + " - " + arr[i, 1].ToString());
+                        
+
                         SqlCommand cd = new SqlCommand("insert into ThoiKB(MasoPC,MasoTG) values(@pc,@tg)", con);
 
                         cd.Parameters.AddWithValue("@pc", pccv);
@@ -144,13 +131,22 @@ namespace DXApplication1.XepTKB
                         try
                         {
                             cd.ExecuteNonQuery();
-                            //MessageBox.Show("Tạo thời khóa biểu thành công");
+                            tkb();
+                            DataTable ck = checkDup();
+                            if (ck.Rows.Count > 0)
+                            {
+                                deleteTKB();
+                                btnXepTKB.PerformClick();
+                            }
+                            
+
                         }
                         catch
                         {
                             //MessageBox.Show("Tạo thời khóa biểu thất bại");
 
                         }
+                        
                     }
 
                 }
@@ -173,6 +169,68 @@ namespace DXApplication1.XepTKB
             ad.Fill(dtTG);
             con.Close();
             return dtTG;
+        }
+
+        public void tkb()
+        {
+            DataTable dt = new DataTable();
+            SqlConnection con = Connect.GetDBConnection();
+            try
+            {
+                con.Open();
+                
+                SqlDataAdapter ap = new SqlDataAdapter("select Hoten,TenMH,TenPhong,Thu,TenCa,Tenlop,KhoaHoc from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong  order by Thu,TenCa ", con);
+                ap.Fill(dt);
+                dataGridView1.DataSource = dt;
+                con.Close();
+            }catch
+            {
+                MessageBox.Show("Lỗi!");
+            }
+            finally
+            {
+                con.Close();
+            }
+
+  
+        }
+
+        private void btndeleteLich_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = Connect.GetDBConnection();
+            con.Open();
+            SqlCommand cmd = new SqlCommand("delete from ThoiKB",con);
+            try
+            {
+                cmd.ExecuteNonQuery();
+                tkb();
+                
+            }
+            catch
+            {
+                MessageBox.Show("Lỗi Xóa lịch");
+            }
+            
+        }
+
+        private DataTable checkDup()
+        {
+            SqlConnection con = Connect.GetDBConnection();
+            con.Open();
+            DataTable dt = new DataTable();
+            SqlCommand cdm = new SqlCommand("select Hoten,Thu,TenCa from ThoiKB tkb, PhancongCV cv, ThoiGianLamviec tg, GiangVien gv, Monhoc mh, Phong p, Lop l, ca c " +
+                "where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa " +
+                "and tg.MasoPhong = p.MasoPhong group by Hoten, Thu, tenca having COUNT(*) > 1",con);
+            dt.Load(cdm.ExecuteReader());
+            con.Close();
+            return dt;
+        }
+
+        private void deleteTKB()
+        {
+            SqlConnection con = Connect.GetDBConnection();
+            SqlCommand cmd = new SqlCommand("delete from ThoiKB");
+            cmd.ExecuteNonQuery();
         }
     }
 }

@@ -71,6 +71,18 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="LinhHoc\LH.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LinhHoc\LH.Designer.cs">
+      <DependentUpon>LH.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Lichlamviec\Lichlv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Lichlamviec\Lichlv.Designer.cs">
+      <DependentUpon>Lichlv.cs</DependentUpon>
+    </Compile>
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -129,6 +141,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LinhHoc\LH.resx">
+      <DependentUpon>LH.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Lichlamviec\Lichlv.resx">
+      <DependentUpon>Lichlv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>

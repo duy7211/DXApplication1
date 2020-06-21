@@ -8,6 +8,8 @@ using DXApplication1.QLLopHoc;
 using DXApplication1.QLMonHoc;
 using DXApplication1.PCCongViec;
 using DXApplication1.XepTKB;
+using DXApplication1.Lichlamviec;
+using DXApplication1.Lichhoc;
 
 namespace DXApplication1
 {
@@ -21,7 +23,7 @@ namespace DXApplication1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrXepTKB());
+            Application.Run(new Form1());
         }
     }
 }

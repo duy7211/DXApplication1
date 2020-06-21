@@ -62,7 +62,7 @@
             this.labelControl1.Appearance.ForeColor = System.Drawing.Color.Blue;
             this.labelControl1.Appearance.Options.UseFont = true;
             this.labelControl1.Appearance.Options.UseForeColor = true;
-            this.labelControl1.Location = new System.Drawing.Point(446, 12);
+            this.labelControl1.Location = new System.Drawing.Point(428, 12);
             this.labelControl1.Name = "labelControl1";
             this.labelControl1.Size = new System.Drawing.Size(149, 23);
             this.labelControl1.TabIndex = 0;
@@ -77,7 +77,7 @@
             this.groupBox1.Controls.Add(this.tbTenlop);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(213, 68);
+            this.groupBox1.Location = new System.Drawing.Point(195, 68);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(456, 178);
             this.groupBox1.TabIndex = 1;
@@ -146,7 +146,7 @@
             this.groupBox2.Controls.Add(this.btnThem);
             this.groupBox2.Controls.Add(this.btnSua);
             this.groupBox2.Controls.Add(this.btnXoa);
-            this.groupBox2.Location = new System.Drawing.Point(675, 68);
+            this.groupBox2.Location = new System.Drawing.Point(657, 68);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(136, 178);
             this.groupBox2.TabIndex = 10;
@@ -267,7 +267,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.labelControl1);
             this.Name = "QuanlyLop";
-            this.Text = "QuanlyLop";
+            this.Text = "Quản lý lớp";
             this.Click += new System.EventHandler(this.QuanlyLop_Click);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

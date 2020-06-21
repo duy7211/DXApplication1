@@ -203,5 +203,10 @@ namespace DXApplication1
         {
             clear();
         }
+
+        private void QuanlyGV_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
