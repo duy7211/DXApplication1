@@ -216,6 +216,7 @@
             this.tbid.Name = "tbid";
             this.tbid.Size = new System.Drawing.Size(249, 20);
             this.tbid.TabIndex = 4;
+            this.tbid.Visible = false;
             // 
             // cbKhoa
             // 
@@ -304,6 +305,7 @@
             this.Controls.Add(this.labelControl1);
             this.Name = "PhanCongCV";
             this.Text = "Phân công công việc";
+            this.DoubleClick += new System.EventHandler(this.PhanCongCV_DoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

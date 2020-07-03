@@ -30,10 +30,16 @@ namespace DXApplication1
         {
             
             Changepw cp = new Changepw();
-            cp.MdiParent = this;
-            
-            cp.Show();
-            
+            if (Application.OpenForms[cp.Name] == null)
+            {
+                cp.MdiParent = this;
+                cp.Show();
+            }
+            else
+            {
+                Application.OpenForms[cp.Name].Focus();
+            }
+
         }
 
         private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
@@ -49,65 +55,128 @@ namespace DXApplication1
         private void qltk_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             QuanlyTK tk = new QuanlyTK();
-            tk.MdiParent = this;
-            tk.Show();
+            if (Application.OpenForms[tk.Name] == null)
+            {
+                tk.MdiParent = this;
+                tk.Show();
+            }
+            else
+            {
+                Application.OpenForms[tk.Name].Focus();
+            }
         }
 
         private void gv_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             QuanlyGV gv = new QuanlyGV();
+            if (Application.OpenForms[gv.Name] == null)
+            {
+                gv.MdiParent = this;
+                gv.Show();
+            }
+            else
+            {
+                Application.OpenForms[gv.Name].Focus();
+            }
             
-            gv.MdiParent = this;
-            gv.Show();
         }
 
         private void barbtnLop_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             QuanlyLop l = new QuanlyLop();
-            l.MdiParent = this;
-            l.Show();
+            if (Application.OpenForms[l.Name] == null)
+            {
+                l.MdiParent = this;
+                l.Show();
+            }
+            else
+            {
+                Application.OpenForms[l.Name].Focus();
+            }
         }
 
         private void barbtnphong_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             QuanlyPhong p = new QuanlyPhong();
-            p.MdiParent = this;
-            p.Show();
+            if (Application.OpenForms[p.Name] == null)
+            {
+                p.MdiParent = this;
+                p.Show();
+            }
+            else
+            {
+                Application.OpenForms[p.Name].Focus();
+            }
         }
 
         private void barbtnMH_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             QuanLyMonHoc mh = new QuanLyMonHoc();
-            mh.MdiParent = this;
-            mh.Show();
+            if (Application.OpenForms[mh.Name] == null)
+            {
+                mh.MdiParent = this;
+                mh.Show();
+            }
+            else
+            {
+                Application.OpenForms[mh.Name].Focus();
+            }
         }
 
         private void barbtnTKB_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             FrXepTKB tkb = new FrXepTKB();
-            tkb.MdiParent = this;
-            tkb.Show();
+            if (Application.OpenForms[tkb.Name] == null)
+            {
+                tkb.MdiParent = this;
+                tkb.Show();
+            }
+            else
+            {
+                Application.OpenForms[tkb.Name].Focus();
+            }
         }
 
         private void barbtn_lich_lv_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             Lichlv lich = new Lichlv();
-            lich.MdiParent = this;
-            lich.Show();
+            if (Application.OpenForms[lich.Name] == null)
+            {
+                lich.MdiParent = this;
+                lich.Show();
+            }
+            else
+            {
+                Application.OpenForms[lich.Name].Focus();
+            }
         }
 
         private void barbtn_lich_hoc_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             LichHoc lh = new LichHoc();
-            lh.MdiParent = this;
-            lh.Show();
+            if (Application.OpenForms[lh.Name] == null)
+            {
+                lh.MdiParent = this;
+                lh.Show();
+            }
+            else
+            {
+                Application.OpenForms[lh.Name].Focus();
+            }
         }
 
         private void barBtnPC_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
             PhanCongCV pc = new PhanCongCV();
-            pc.MdiParent = this;
-            pc.Show();
+            if (Application.OpenForms[pc.Name] == null)
+            {
+                pc.MdiParent = this;
+                pc.Show();
+            }
+            else
+            {
+                Application.OpenForms[pc.Name].Focus();
+            }
         }
     }
 }

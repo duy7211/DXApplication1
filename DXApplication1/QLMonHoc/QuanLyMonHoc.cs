@@ -196,5 +196,10 @@ namespace DXApplication1.QLMonHoc
                 MessageBox.Show("Không được bỏ trống ô dữ liệu!");
             }
         }
+
+        private void QuanLyMonHoc_DoubleClick(object sender, EventArgs e)
+        {
+            clear();
+        }
     }
 }

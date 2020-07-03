@@ -6,10 +6,12 @@ using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace DXApplication1.XepTKB
 {
@@ -132,12 +134,15 @@ namespace DXApplication1.XepTKB
                         {
                             cd.ExecuteNonQuery();
                             tkb();
-                            DataTable ck = checkDup();
+                            /*DataTable ck = checkDup();
                             if (ck.Rows.Count > 0)
                             {
+                                
                                 deleteTKB();
                                 btnXepTKB.PerformClick();
-                            }
+                                MessageBox.Show(ck.Rows.Count+"");
+                               
+                            } */
                             
 
                         }
@@ -150,6 +155,15 @@ namespace DXApplication1.XepTKB
                     }
 
                 }
+                //Tính độ thích nghi
+                DataTable ck = checkDup();
+                if (ck.Rows.Count > 0)
+                {
+
+                    deleteTKB();
+                    btnXepTKB.PerformClick();
+                    //MessageBox.Show(ck.Rows.Count + "");
+                }
             }
             catch (Exception)
             {
@@ -157,7 +171,7 @@ namespace DXApplication1.XepTKB
             }
             finally
             {
-                con.Close();
+                //con.Close();
             }
         }
         public DataTable DataTgLamviec()
@@ -231,6 +245,56 @@ namespace DXApplication1.XepTKB
             SqlConnection con = Connect.GetDBConnection();
             SqlCommand cmd = new SqlCommand("delete from ThoiKB");
             cmd.ExecuteNonQuery();
+        }
+
+   
+        private void excel_Click(object sender, EventArgs e)
+        {
+            // Don't save if no data is returned
+            if (dataGridView1.Rows.Count == 0)
+            {
+                return;
+            }
+            StringBuilder sb = new StringBuilder();
+            // Column headers
+            string columnsHeader = "";
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                columnsHeader += dataGridView1.Columns[i].HeaderText + ",";
+            }
+            sb.Append(columnsHeader + Environment.NewLine);
+            // Go through each cell in the datagridview
+            foreach (DataGridViewRow dgvRow in dataGridView1.Rows)
+            {
+                // Make sure it's not an empty row.
+                if (!dgvRow.IsNewRow)
+                {
+                    for (int c = 0; c < dgvRow.Cells.Count; c++)
+                    {
+                        // Append the cells data followed by a comma to delimit.
+
+                        sb.Append(dgvRow.Cells[c].Value + ",");
+                    }
+                    // Add a new line in the text file.
+                    sb.Append(Environment.NewLine);
+                }
+            }
+            // Load up the save file dialog with the default option as saving as a .csv file.
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "Excel Files|*.xls;*.xlsx;*.xlsm";
+            //Excel Files|*.xls;*.xlsx;*.xlsm
+            //CSV files (*.csv)|*.csv
+            if (sfd.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                // If they've selected a save location...
+                using (System.IO.StreamWriter sw = new System.IO.StreamWriter(sfd.FileName, false))
+                {
+                    // Write the stringbuilder text to the the file.
+                    sw.WriteLine(sb.ToString());
+                }
+            }
+            // Confirm to the user it has been completed.
+            MessageBox.Show("Lưu thành công!.");
         }
     }
 }

@@ -236,5 +236,10 @@ namespace DXApplication1.QlPhong
                 }
             }
         }
+
+        private void QuanlyPhong_DoubleClick(object sender, EventArgs e)
+        {
+            clear();
+        }
     }
 }

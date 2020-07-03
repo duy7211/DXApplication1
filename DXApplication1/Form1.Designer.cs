@@ -51,6 +51,7 @@
             this.ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             this.documentManager1 = new DevExpress.XtraBars.Docking2010.DocumentManager(this.components);
             this.tabbedView1 = new DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(this.components);
+            this.btnCa = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)(this.ribbonControl1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageCollection1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.documentManager1)).BeginInit();
@@ -73,10 +74,11 @@
             this.barbtnTKB,
             this.barbtn_lich_lv,
             this.barbtn_lich_hoc,
-            this.barBtnPC});
+            this.barBtnPC,
+            this.btnCa});
             this.ribbonControl1.LargeImages = this.imageCollection1;
             this.ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            this.ribbonControl1.MaxItemId = 15;
+            this.ribbonControl1.MaxItemId = 16;
             this.ribbonControl1.Name = "ribbonControl1";
             this.ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] {
             this.ribbonPage1,
@@ -217,6 +219,7 @@
             this.ribbonPageGroup2.ItemLinks.Add(this.barbtnLop);
             this.ribbonPageGroup2.ItemLinks.Add(this.barbtnphong);
             this.ribbonPageGroup2.ItemLinks.Add(this.barbtnMH);
+            this.ribbonPageGroup2.ItemLinks.Add(this.btnCa);
             this.ribbonPageGroup2.Name = "ribbonPageGroup2";
             // 
             // ribbonPage3
@@ -240,6 +243,14 @@
             this.documentManager1.View = this.tabbedView1;
             this.documentManager1.ViewCollection.AddRange(new DevExpress.XtraBars.Docking2010.Views.BaseView[] {
             this.tabbedView1});
+            // 
+            // btnCa
+            // 
+            this.btnCa.Caption = "Ca";
+            this.btnCa.Id = 15;
+            this.btnCa.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("btnCa.ImageOptions.Image")));
+            this.btnCa.ImageOptions.LargeImage = ((System.Drawing.Image)(resources.GetObject("btnCa.ImageOptions.LargeImage")));
+            this.btnCa.Name = "btnCa";
             // 
             // Form1
             // 
@@ -284,6 +295,7 @@
         private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage3;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem barBtnPC;
+        private DevExpress.XtraBars.BarButtonItem btnCa;
     }
 }
 

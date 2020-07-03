@@ -30,6 +30,7 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrXepTKB));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +42,7 @@
             this.btnXepTKB = new DevExpress.XtraEditors.SimpleButton();
             this.label1 = new System.Windows.Forms.Label();
             this.btndeleteLich = new System.Windows.Forms.Button();
+            this.excel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -161,15 +163,31 @@
             this.btndeleteLich.UseVisualStyleBackColor = true;
             this.btndeleteLich.Click += new System.EventHandler(this.btndeleteLich_Click);
             // 
+            // excel
+            // 
+            this.excel.Appearance.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.excel.Appearance.Options.UseBackColor = true;
+            this.excel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.excel.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("excel.ImageOptions.Image")));
+            this.excel.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleLeft;
+            this.excel.Location = new System.Drawing.Point(0, 124);
+            this.excel.Name = "excel";
+            this.excel.Size = new System.Drawing.Size(120, 29);
+            this.excel.TabIndex = 4;
+            this.excel.Text = "Xuất ra file excel";
+            this.excel.Click += new System.EventHandler(this.excel_Click);
+            // 
             // FrXepTKB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.excel);
             this.Controls.Add(this.btndeleteLich);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnXepTKB);
             this.Controls.Add(this.dataGridView1);
+            this.Cursor = System.Windows.Forms.Cursors.Default;
             this.Name = "FrXepTKB";
             this.Text = "Sắp Xếp Thời Khóa Biểu";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -191,5 +209,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenCa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tenlop;
         private System.Windows.Forms.DataGridViewTextBoxColumn KhoaHoc;
+        private DevExpress.XtraEditors.SimpleButton excel;
     }
 }

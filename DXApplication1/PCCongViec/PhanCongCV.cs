@@ -152,6 +152,14 @@ namespace DXApplication1.PCCongViec
         {
             
             tbid.Text = "";
+            cbGV.ResetText();
+            cbGV.SelectedIndex = -1;
+            cbLop.ResetText();
+            cbLop.SelectedIndex = -1;
+            cbKhoa.ResetText();
+            cbKhoa.SelectedIndex = -1;
+            cbMH.ResetText();
+            cbMH.SelectedIndex = -1;
         }
         public void GetAllPC()
         {
@@ -387,6 +395,11 @@ namespace DXApplication1.PCCongViec
                     GetAllPC();
                 }
             }
+        }
+
+        private void PhanCongCV_DoubleClick(object sender, EventArgs e)
+        {
+            clear();
         }
     }
 }

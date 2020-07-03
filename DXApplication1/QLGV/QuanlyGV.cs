@@ -201,12 +201,13 @@ namespace DXApplication1
 
         private void QuanlyGV_Click(object sender, EventArgs e)
         {
-            clear();
+            
         }
 
-        private void QuanlyGV_Load(object sender, EventArgs e)
+   
+        private void QuanlyGV_DoubleClick(object sender, EventArgs e)
         {
-
+            clear();
         }
     }
 }

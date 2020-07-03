@@ -173,30 +173,35 @@
             // 
             // Hoten
             // 
+            this.Hoten.DataPropertyName = "Hoten";
             this.Hoten.HeaderText = "Giảng Viên";
             this.Hoten.Name = "Hoten";
             this.Hoten.ReadOnly = true;
             // 
             // TenMH
             // 
+            this.TenMH.DataPropertyName = "TenMH";
             this.TenMH.HeaderText = "Môn";
             this.TenMH.Name = "TenMH";
             this.TenMH.ReadOnly = true;
             // 
             // TenPhong
             // 
+            this.TenPhong.DataPropertyName = "TenPhong";
             this.TenPhong.HeaderText = "Phòng";
             this.TenPhong.Name = "TenPhong";
             this.TenPhong.ReadOnly = true;
             // 
             // Thu
             // 
+            this.Thu.DataPropertyName = "Thu";
             this.Thu.HeaderText = "Thứ";
             this.Thu.Name = "Thu";
             this.Thu.ReadOnly = true;
             // 
             // TenCa
             // 
+            this.TenCa.DataPropertyName = "TenCa";
             this.TenCa.HeaderText = "Tiết";
             this.TenCa.Name = "TenCa";
             this.TenCa.ReadOnly = true;

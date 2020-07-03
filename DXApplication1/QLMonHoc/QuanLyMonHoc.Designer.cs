@@ -266,6 +266,7 @@
             this.Controls.Add(this.labelControl1);
             this.Name = "QuanLyMonHoc";
             this.Text = "Quản lý môn học";
+            this.DoubleClick += new System.EventHandler(this.QuanLyMonHoc_DoubleClick);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
