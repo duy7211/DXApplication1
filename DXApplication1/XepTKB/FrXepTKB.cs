@@ -56,7 +56,7 @@ namespace DXApplication1.XepTKB
                     //lấy mã tg làm việc
                     
                     DataTable tg = new DataTable();
-                    SqlDataAdapter ad = new SqlDataAdapter("select MasoTG,MasoPhong,MasoCa,Thu from ThoiGianLamviec tg except select tkb.MasoTG, MasoPhong, MasoCa, Thu from ThoiKB tkb, ThoiGianLamviec tg where tkb.MasoTG = tg.MasoTG", con);
+                    SqlDataAdapter ad = new SqlDataAdapter("select MasoTG,tg.MasoPhong,tg.MasoCa,Thu from ThoiGianLamviec tg, Ca c where tg.MasoCa = c.MasoCa and c.flag = 1 except select tkb.MasoTG, MasoPhong, MasoCa, Thu from ThoiKB tkb, ThoiGianLamviec tg where tkb.MasoTG = tg.MasoTG", con);
                     ad.Fill(tg);
 
                     //lấy danh sách mã tg trong tkb
@@ -160,14 +160,18 @@ namespace DXApplication1.XepTKB
                 if (ck.Rows.Count > 0)
                 {
 
-                    deleteTKB();
+                    //deleteTKB();
+                    btndeleteLich.PerformClick();
                     btnXepTKB.PerformClick();
                     //MessageBox.Show(ck.Rows.Count + "");
                 }
             }
             catch (Exception)
             {
-                MessageBox.Show("Lỗi kết nối !");
+                //MessageBox.Show("Lỗi kết nối !");
+                //deleteTKB();
+                btndeleteLich.PerformClick();
+                btnXepTKB.PerformClick();
             }
             finally
             {
@@ -295,6 +299,35 @@ namespace DXApplication1.XepTKB
             }
             // Confirm to the user it has been completed.
             MessageBox.Show("Lưu thành công!.");
+        }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("TenCa"))
+            {
+
+                String stringValue = e.Value as string;
+                if (stringValue == null) return;
+
+                switch (stringValue)
+                {
+                    case "Ca 1":
+                        e.Value = "1 2 3";
+                        break;
+                    case "Ca 2":
+                        e.Value = "4 5";
+                        break;
+                    case "Ca 3":
+                        e.Value = "6 7";
+                        break;
+                    case "Ca 4":
+                        e.Value = "8 9 10";
+                        break;
+                    case "Ca 5":
+                        e.Value = "11 12 13";
+                        break;
+                }
+            }
         }
     }
 }

@@ -10,6 +10,8 @@ using DXApplication1.PCCongViec;
 using DXApplication1.XepTKB;
 using DXApplication1.Lichlamviec;
 using DXApplication1.Lichhoc;
+using DXApplication1.ca;
+using DXApplication1.QLNganh;
 
 namespace DXApplication1
 {

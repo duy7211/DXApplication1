@@ -163,5 +163,34 @@ namespace DXApplication1.Lichhoc
             return dt;
             
         }
+
+        private void dataGridView1_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridView1.Columns[e.ColumnIndex].Name.Equals("TenCa"))
+            {
+
+                String stringValue = e.Value as string;
+                if (stringValue == null) return;
+
+                switch (stringValue)
+                {
+                    case "Ca 1":
+                        e.Value = "1 2 3";
+                        break;
+                    case "Ca 2":
+                        e.Value = "4 5";
+                        break;
+                    case "Ca 3":
+                        e.Value = "6 7";
+                        break;
+                    case "Ca 4":
+                        e.Value = "8 9 10";
+                        break;
+                    case "Ca 5":
+                        e.Value = "11 12 13";
+                        break;
+                }
+            }
+        }
     }
 }

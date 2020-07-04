@@ -114,7 +114,7 @@ namespace DXApplication1.QlPhong
 
                     for (int i = 2; i <= 7; i++)
                     {
-                        for (int j = 1; j <= 4; j++)
+                        for (int j = 1; j <= 5; j++)
                         {
                             SqlCommand command = new SqlCommand("insert into ThoiGianLamviec(MasoPhong,MasoCa,Thu) values(@ms,@mc,@thu)", con);
                             command.Parameters.AddWithValue("@ms", id);

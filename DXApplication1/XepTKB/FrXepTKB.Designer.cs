@@ -32,6 +32,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrXepTKB));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnXepTKB = new DevExpress.XtraEditors.SimpleButton();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btndeleteLich = new System.Windows.Forms.Button();
+            this.excel = new DevExpress.XtraEditors.SimpleButton();
             this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,10 +43,6 @@
             this.TenCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tenlop = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhoaHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnXepTKB = new DevExpress.XtraEditors.SimpleButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btndeleteLich = new System.Windows.Forms.Button();
-            this.excel = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -83,55 +83,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(800, 291);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Hoten
-            // 
-            this.Hoten.DataPropertyName = "Hoten";
-            this.Hoten.HeaderText = "Giảng Viên";
-            this.Hoten.Name = "Hoten";
-            this.Hoten.ReadOnly = true;
-            // 
-            // TenMH
-            // 
-            this.TenMH.DataPropertyName = "TenMH";
-            this.TenMH.HeaderText = "Môn";
-            this.TenMH.Name = "TenMH";
-            this.TenMH.ReadOnly = true;
-            // 
-            // TenPhong
-            // 
-            this.TenPhong.DataPropertyName = "TenPhong";
-            this.TenPhong.HeaderText = "Phòng";
-            this.TenPhong.Name = "TenPhong";
-            this.TenPhong.ReadOnly = true;
-            // 
-            // Thu
-            // 
-            this.Thu.DataPropertyName = "Thu";
-            this.Thu.HeaderText = "Thứ";
-            this.Thu.Name = "Thu";
-            this.Thu.ReadOnly = true;
-            // 
-            // TenCa
-            // 
-            this.TenCa.DataPropertyName = "TenCa";
-            this.TenCa.HeaderText = "Ca";
-            this.TenCa.Name = "TenCa";
-            this.TenCa.ReadOnly = true;
-            // 
-            // Tenlop
-            // 
-            this.Tenlop.DataPropertyName = "Tenlop";
-            this.Tenlop.HeaderText = "Lớp";
-            this.Tenlop.Name = "Tenlop";
-            this.Tenlop.ReadOnly = true;
-            // 
-            // KhoaHoc
-            // 
-            this.KhoaHoc.DataPropertyName = "KhoaHoc";
-            this.KhoaHoc.HeaderText = "Khóa";
-            this.KhoaHoc.Name = "KhoaHoc";
-            this.KhoaHoc.ReadOnly = true;
+            this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
             // 
             // btnXepTKB
             // 
@@ -177,6 +129,55 @@
             this.excel.Text = "Xuất ra file excel";
             this.excel.Click += new System.EventHandler(this.excel_Click);
             // 
+            // Hoten
+            // 
+            this.Hoten.DataPropertyName = "Hoten";
+            this.Hoten.HeaderText = "Giảng Viên";
+            this.Hoten.Name = "Hoten";
+            this.Hoten.ReadOnly = true;
+            // 
+            // TenMH
+            // 
+            this.TenMH.DataPropertyName = "TenMH";
+            this.TenMH.HeaderText = "Môn";
+            this.TenMH.Name = "TenMH";
+            this.TenMH.ReadOnly = true;
+            // 
+            // TenPhong
+            // 
+            this.TenPhong.DataPropertyName = "TenPhong";
+            this.TenPhong.HeaderText = "Phòng";
+            this.TenPhong.Name = "TenPhong";
+            this.TenPhong.ReadOnly = true;
+            // 
+            // Thu
+            // 
+            this.Thu.DataPropertyName = "Thu";
+            this.Thu.HeaderText = "Thứ";
+            this.Thu.Name = "Thu";
+            this.Thu.ReadOnly = true;
+            // 
+            // TenCa
+            // 
+            this.TenCa.DataPropertyName = "TenCa";
+            this.TenCa.HeaderText = "Tiết";
+            this.TenCa.Name = "TenCa";
+            this.TenCa.ReadOnly = true;
+            // 
+            // Tenlop
+            // 
+            this.Tenlop.DataPropertyName = "Tenlop";
+            this.Tenlop.HeaderText = "Lớp";
+            this.Tenlop.Name = "Tenlop";
+            this.Tenlop.ReadOnly = true;
+            // 
+            // KhoaHoc
+            // 
+            this.KhoaHoc.DataPropertyName = "KhoaHoc";
+            this.KhoaHoc.HeaderText = "Khóa";
+            this.KhoaHoc.Name = "KhoaHoc";
+            this.KhoaHoc.ReadOnly = true;
+            // 
             // FrXepTKB
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -202,6 +203,7 @@
         private DevExpress.XtraEditors.SimpleButton btnXepTKB;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btndeleteLich;
+        private DevExpress.XtraEditors.SimpleButton excel;
         private System.Windows.Forms.DataGridViewTextBoxColumn Hoten;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenMH;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenPhong;
@@ -209,6 +211,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TenCa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tenlop;
         private System.Windows.Forms.DataGridViewTextBoxColumn KhoaHoc;
-        private DevExpress.XtraEditors.SimpleButton excel;
     }
 }

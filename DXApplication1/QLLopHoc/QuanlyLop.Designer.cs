@@ -38,7 +38,6 @@
             this.labelControl3 = new DevExpress.XtraEditors.LabelControl();
             this.tbKhoa = new DevExpress.XtraEditors.TextEdit();
             this.labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            this.tbTenlop = new DevExpress.XtraEditors.TextEdit();
             this.labelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnThem = new DevExpress.XtraEditors.SimpleButton();
@@ -46,12 +45,12 @@
             this.btnXoa = new DevExpress.XtraEditors.SimpleButton();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.MasoLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tenlop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNganh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KhoaHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cbNganh = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbMalop.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbKhoa.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTenlop.Properties)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -70,11 +69,11 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbNganh);
             this.groupBox1.Controls.Add(this.tbMalop);
             this.groupBox1.Controls.Add(this.labelControl3);
             this.groupBox1.Controls.Add(this.tbKhoa);
             this.groupBox1.Controls.Add(this.labelControl4);
-            this.groupBox1.Controls.Add(this.tbTenlop);
             this.groupBox1.Controls.Add(this.labelControl2);
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(195, 68);
@@ -123,13 +122,6 @@
             this.labelControl4.TabIndex = 0;
             this.labelControl4.Text = "Khóa:";
             // 
-            // tbTenlop
-            // 
-            this.tbTenlop.Location = new System.Drawing.Point(123, 66);
-            this.tbTenlop.Name = "tbTenlop";
-            this.tbTenlop.Size = new System.Drawing.Size(233, 20);
-            this.tbTenlop.TabIndex = 2;
-            // 
             // labelControl2
             // 
             this.labelControl2.Appearance.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -137,9 +129,9 @@
             this.labelControl2.Location = new System.Drawing.Point(50, 69);
             this.labelControl2.Name = "labelControl2";
             this.labelControl2.ShowLineShadow = false;
-            this.labelControl2.Size = new System.Drawing.Size(44, 15);
+            this.labelControl2.Size = new System.Drawing.Size(37, 15);
             this.labelControl2.TabIndex = 0;
-            this.labelControl2.Text = "Tên lớp:";
+            this.labelControl2.Text = "Ngành";
             // 
             // groupBox2
             // 
@@ -209,7 +201,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MasoLop,
-            this.Tenlop,
+            this.TenNganh,
             this.KhoaHoc});
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -243,12 +235,12 @@
             this.MasoLop.Name = "MasoLop";
             this.MasoLop.ReadOnly = true;
             // 
-            // Tenlop
+            // TenNganh
             // 
-            this.Tenlop.DataPropertyName = "Tenlop";
-            this.Tenlop.HeaderText = "Tên lớp";
-            this.Tenlop.Name = "Tenlop";
-            this.Tenlop.ReadOnly = true;
+            this.TenNganh.DataPropertyName = "TenNganh";
+            this.TenNganh.HeaderText = "Ngành";
+            this.TenNganh.Name = "TenNganh";
+            this.TenNganh.ReadOnly = true;
             // 
             // KhoaHoc
             // 
@@ -256,6 +248,14 @@
             this.KhoaHoc.HeaderText = "Khóa";
             this.KhoaHoc.Name = "KhoaHoc";
             this.KhoaHoc.ReadOnly = true;
+            // 
+            // cbNganh
+            // 
+            this.cbNganh.FormattingEnabled = true;
+            this.cbNganh.Location = new System.Drawing.Point(123, 67);
+            this.cbNganh.Name = "cbNganh";
+            this.cbNganh.Size = new System.Drawing.Size(233, 23);
+            this.cbNganh.TabIndex = 11;
             // 
             // QuanlyLop
             // 
@@ -273,7 +273,6 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbMalop.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbKhoa.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbTenlop.Properties)).EndInit();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -289,7 +288,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl3;
         private DevExpress.XtraEditors.TextEdit tbKhoa;
         private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.TextEdit tbTenlop;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private System.Windows.Forms.GroupBox groupBox2;
         private DevExpress.XtraEditors.SimpleButton btnThem;
@@ -297,7 +295,8 @@
         private DevExpress.XtraEditors.SimpleButton btnXoa;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn MasoLop;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tenlop;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenNganh;
         private System.Windows.Forms.DataGridViewTextBoxColumn KhoaHoc;
+        private System.Windows.Forms.ComboBox cbNganh;
     }
 }

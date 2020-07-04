@@ -62,6 +62,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ca\Calv.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ca\Calv.Designer.cs">
+      <DependentUpon>Calv.cs</DependentUpon>
+    </Compile>
     <Compile Include="Changepw.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,6 +126,12 @@
     <Compile Include="QLMonHoc\QuanLyMonHoc.Designer.cs">
       <DependentUpon>QuanLyMonHoc.cs</DependentUpon>
     </Compile>
+    <Compile Include="QLNganh\Nganh.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="QLNganh\Nganh.Designer.cs">
+      <DependentUpon>Nganh.cs</DependentUpon>
+    </Compile>
     <Compile Include="QlPhong\QuanlyPhong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -140,6 +152,9 @@
     <Compile Include="XepTKB\FrXepTKB.Designer.cs">
       <DependentUpon>FrXepTKB.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ca\Calv.resx">
+      <DependentUpon>Calv.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Changepw.resx">
       <DependentUpon>Changepw.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +192,9 @@
     <EmbeddedResource Include="QLMonHoc\QuanLyMonHoc.resx">
       <DependentUpon>QuanLyMonHoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="QLNganh\Nganh.resx">
+      <DependentUpon>Nganh.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="QlPhong\QuanlyPhong.resx">
       <DependentUpon>QuanlyPhong.cs</DependentUpon>
     </EmbeddedResource>
@@ -198,6 +216,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.

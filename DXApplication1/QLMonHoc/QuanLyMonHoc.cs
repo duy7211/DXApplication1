@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DXApplication1.QLNganh;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,6 +17,7 @@ namespace DXApplication1.QLMonHoc
         public QuanLyMonHoc()
         {
             InitializeComponent();
+            LoadData();
             GetAllMH();
         }
         private void clear()
@@ -24,6 +26,8 @@ namespace DXApplication1.QLMonHoc
             tbTenmon.Text = "";
             tbstc.Text = "";
             btnThem.Enabled = true;
+            cbNganh.ResetText();
+            cbNganh.SelectedIndex = -1;
         }
         public string createID()
         {
@@ -65,9 +69,11 @@ namespace DXApplication1.QLMonHoc
             {
                 con.Open();
                 DataTable dt = new DataTable();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Monhoc", con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoMH,TenMH,Sotc,TenNganh from Monhoc m, Nganh n where m.MaNganh=n.MaNganh", con);
                 dataAdapter.Fill(dt);
                 dataGridView1.DataSource = dt;
+                //select MasoMH,TenMH,Sotc,TenNganh from Monhoc m, Nganh n where m.MaNganh=n.MaNganh
+                //select MasoMH,TenMH,Sotc,MaNganh from Monhoc
             }
             catch (Exception)
             {
@@ -86,11 +92,13 @@ namespace DXApplication1.QLMonHoc
             {
                 con.Open();
                 string ms = createID();
+                string Nganh = cbNganh.SelectedValue.ToString();
 
-                SqlCommand cmd = new SqlCommand("insert into Monhoc(MasoMH,TenMH,Sotc) values(@ms,@tm,@stc)", con);
+                SqlCommand cmd = new SqlCommand("insert into Monhoc(MasoMH,TenMH,Sotc,MaNganh) values(@ms,@tm,@stc,@n)", con);
                 cmd.Parameters.AddWithValue("@ms", ms);
                 cmd.Parameters.AddWithValue("@tm", tbTenmon.Text);
                 cmd.Parameters.AddWithValue("@stc", tbstc.Text);
+                cmd.Parameters.AddWithValue("@n", Nganh);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -120,11 +128,13 @@ namespace DXApplication1.QLMonHoc
             if (tbTenmon.Text != "" && tbstc.Text != "")
             {
                 con.Open();
+                string Nganh = cbNganh.SelectedValue.ToString();
 
-                SqlCommand cmd = new SqlCommand("update Monhoc set TenMH=@tm,Sotc=@stc where MasoMH=@id", con);
+                SqlCommand cmd = new SqlCommand("update Monhoc set TenMH=@tm,Sotc=@stc,MaNganh=@n where MasoMH=@id", con);
                 cmd.Parameters.AddWithValue("@id", tbMamon.Text);
                 cmd.Parameters.AddWithValue("@tm", tbTenmon.Text);
                 cmd.Parameters.AddWithValue("@stc", tbstc.Text);
+                cmd.Parameters.AddWithValue("@n", Nganh);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -150,17 +160,20 @@ namespace DXApplication1.QLMonHoc
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            string nganh = "";
             if (dataGridView1.Rows.Count > 0)
             {
-
+                
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {
                     tbMamon.Text = row.Cells[0].Value.ToString();
                     tbTenmon.Text = row.Cells[1].Value.ToString();
                     tbstc.Text = row.Cells[2].Value.ToString();
-
+                    nganh = row.Cells[3].Value.ToString();
                 }
             }
+            int indexNghanh = cbNganh.FindString(nganh);
+            cbNganh.SelectedIndex = indexNghanh;
             btnThem.Enabled = false;
         }
 
@@ -200,6 +213,31 @@ namespace DXApplication1.QLMonHoc
         private void QuanLyMonHoc_DoubleClick(object sender, EventArgs e)
         {
             clear();
+        }
+
+        private void LoadData()
+        {
+            SqlConnection con = Connect.GetDBConnection();
+            //Load Giảng viên
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Nganh", con);
+                dataAdapter.Fill(dt);
+                //dataGridView1.DataSource = dt;
+                cbNganh.DataSource = dt;
+                cbNganh.DisplayMember = "TenNganh";
+                cbNganh.ValueMember = "MaNganh";
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không load được giảng viên!");
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }

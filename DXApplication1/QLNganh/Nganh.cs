@@ -9,28 +9,35 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DXApplication1.QLLopHoc
+namespace DXApplication1.QLNganh
 {
-    public partial class QuanlyLop : Form
+    public partial class Nganh : Form
     {
-        public QuanlyLop()
+        public Nganh()
         {
             InitializeComponent();
-            GetAllLop();
-            LoadData();
+            GetAllNganh();
+        }
+
+        private void clear()
+        {
+            tbManganh.Text = "";
+            tbTennganh.Text = "";
+            
+            btnThem.Enabled = true;
         }
         public string createID()
         {
             string Id = "";
             SqlConnection con = Connect.GetDBConnection();
             DataTable dt = new DataTable();
-            SqlDataAdapter dataAdapter = new SqlDataAdapter("select MAX(SUBSTRING(MasoLop,3,4)) from Lop", con);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter("select MAX(SUBSTRING(MaNganh,3,4)) from Nganh", con);
             dataAdapter.Fill(dt);
 
 
             if (dt.Rows[0][0].ToString() == "")
             {
-                Id = "LH0001";
+                Id = "NG0001";
             }
             else
             {
@@ -39,27 +46,27 @@ namespace DXApplication1.QLLopHoc
                 so += 1;
                 if (so < 10)
                 {
-                    Id = "LH000" + so;
+                    Id = "NG000" + so;
                 }
                 else if (so < 100)
                 {
-                    Id = "LH00" + so;
+                    Id = "NG00" + so;
                 }
                 else
                 {
-                    Id = "LH" + so;
+                    Id = "NG" + so;
                 }
             }
             return Id;
         }
-        public void GetAllLop()
+        public void GetAllNganh()
         {
             SqlConnection con = Connect.GetDBConnection();
             try
             {
                 con.Open();
                 DataTable dt = new DataTable();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoLop,TenNganh,KhoaHoc from lop l,Nganh n where l.MaNganh = n.MaNganh", con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Nganh", con);
                 dataAdapter.Fill(dt);
                 dataGridView1.DataSource = dt;
             }
@@ -76,16 +83,14 @@ namespace DXApplication1.QLLopHoc
         private void btnThem_Click(object sender, EventArgs e)
         {
             SqlConnection con = Connect.GetDBConnection();
-            if (cbNganh.Text != "" && tbKhoa.Text != "")
+            if (tbTennganh.Text != "")
             {
                 con.Open();
                 string ms = createID();
-                string Nganh = cbNganh.SelectedValue.ToString();
 
-                SqlCommand cmd = new SqlCommand("insert into Lop(MasoLop,KhoaHoc,MaNganh) values(@ms,@k,@n)", con);
-                cmd.Parameters.AddWithValue("@ms", ms);
-                cmd.Parameters.AddWithValue("@n", Nganh);
-                cmd.Parameters.AddWithValue("@k", tbKhoa.Text);  
+                SqlCommand cmd = new SqlCommand("insert into Nganh(MaNganh,TenNganh) values(@ms,@n)", con);
+                cmd.Parameters.AddWithValue("@ms", ms);  
+                cmd.Parameters.AddWithValue("@n", tbTennganh.Text);
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -100,7 +105,7 @@ namespace DXApplication1.QLLopHoc
                 finally
                 {
                     con.Close();
-                    GetAllLop();
+                    GetAllNganh();
                 }
             }
             else
@@ -108,27 +113,18 @@ namespace DXApplication1.QLLopHoc
                 MessageBox.Show("Không được bỏ trống ô dữ liệu!");
             }
         }
-        private void clear()
-        {
-            tbMalop.Text = "";
-            cbNganh.ResetText();
-            cbNganh.SelectedIndex = -1;
-            tbKhoa.Text = "";
-            btnThem.Enabled = true;
-        }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
             SqlConnection con = Connect.GetDBConnection();
-            if (cbNganh.Text != "" && tbKhoa.Text != "")
+            if (tbTennganh.Text != "")
             {
                 con.Open();
-                string Nganh = cbNganh.SelectedValue.ToString();
 
-                SqlCommand cmd = new SqlCommand("update Lop set MaNganh=@n,KhoaHoc=@k where MasoLop=@id", con);
-                cmd.Parameters.AddWithValue("@id", tbMalop.Text);
-                cmd.Parameters.AddWithValue("@n", Nganh);
-                cmd.Parameters.AddWithValue("@k", tbKhoa.Text);
+                SqlCommand cmd = new SqlCommand("update Nganh set TenNganh=@n where MaNganh=@id", con);
+                cmd.Parameters.AddWithValue("@id", tbManganh.Text);
+                cmd.Parameters.AddWithValue("@n", tbTennganh.Text);
+                
                 try
                 {
                     cmd.ExecuteNonQuery();
@@ -143,7 +139,7 @@ namespace DXApplication1.QLLopHoc
                 finally
                 {
                     con.Close();
-                    GetAllLop();
+                    GetAllNganh();
                 }
             }
             else
@@ -154,39 +150,35 @@ namespace DXApplication1.QLLopHoc
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            string nganh = "";
             if (dataGridView1.Rows.Count > 0)
             {
-                
+
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)
                 {
-                    tbMalop.Text = row.Cells[0].Value.ToString();
-                    nganh = row.Cells[1].Value.ToString();
-                    tbKhoa.Text = row.Cells[2].Value.ToString(); 
+                    tbManganh.Text = row.Cells[0].Value.ToString();
+                    tbTennganh.Text = row.Cells[1].Value.ToString();
+                    
 
                 }
             }
-            int indexNghanh = cbNganh.FindString(nganh);
-            cbNganh.SelectedIndex = indexNghanh;
-            btnThem.Enabled = false;
             btnThem.Enabled = false;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
             SqlConnection con = Connect.GetDBConnection();
-            if (cbNganh.Text != "" && tbKhoa.Text != "")
+            if (tbTennganh.Text != "")
             {
                 con.Open();
-                SqlCommand cmd = new SqlCommand("delete from Lop where MasoLop=@id", con);     
-                cmd.Parameters.AddWithValue("@id", tbMalop.Text);
-             
+                SqlCommand cmd = new SqlCommand("delete from Nganh where MaNganh=@id", con);
+                cmd.Parameters.AddWithValue("@id", tbManganh.Text);
+
                 try
                 {
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Xóa thành Công !");
                     clear();
-                    
+
 
                 }
                 catch (Exception)
@@ -196,7 +188,7 @@ namespace DXApplication1.QLLopHoc
                 finally
                 {
                     con.Close();
-                    GetAllLop();
+                    GetAllNganh();
                 }
             }
             else
@@ -205,34 +197,9 @@ namespace DXApplication1.QLLopHoc
             }
         }
 
-        private void QuanlyLop_Click(object sender, EventArgs e)
+        private void Nganh_DoubleClick(object sender, EventArgs e)
         {
             clear();
         }
-        private void LoadData()
-        {
-            SqlConnection con = Connect.GetDBConnection();
-            //Load Giảng viên
-            try
-            {
-                con.Open();
-                DataTable dt = new DataTable();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select * from Nganh where TenNganh !='*'", con);
-                dataAdapter.Fill(dt);
-                //dataGridView1.DataSource = dt;
-                cbNganh.DataSource = dt;
-                cbNganh.DisplayMember = "TenNganh";
-                cbNganh.ValueMember = "MaNganh";
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không load được Ngành!");
-            }
-            finally
-            {
-                con.Close();
-            }
-        }
     }
-    }
-
+}

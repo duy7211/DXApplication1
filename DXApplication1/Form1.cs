@@ -1,8 +1,10 @@
-﻿using DXApplication1.Lichhoc;
+﻿using DXApplication1.ca;
+using DXApplication1.Lichhoc;
 using DXApplication1.Lichlamviec;
 using DXApplication1.PCCongViec;
 using DXApplication1.QLLopHoc;
 using DXApplication1.QLMonHoc;
+using DXApplication1.QLNganh;
 using DXApplication1.QlPhong;
 using DXApplication1.XepTKB;
 using System;
@@ -176,6 +178,34 @@ namespace DXApplication1
             else
             {
                 Application.OpenForms[pc.Name].Focus();
+            }
+        }
+
+        private void btnCa_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Calv ca = new Calv();
+            if (Application.OpenForms[ca.Name] == null)
+            {
+                ca.MdiParent = this;
+                ca.Show();
+            }
+            else
+            {
+                Application.OpenForms[ca.Name].Focus();
+            }
+        }
+
+        private void Nganh_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+        {
+            Nganh n = new Nganh();
+            if (Application.OpenForms[n.Name] == null)
+            {
+                n.MdiParent = this;
+                n.Show();
+            }
+            else
+            {
+                Application.OpenForms[n.Name].Focus();
             }
         }
     }

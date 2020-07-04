@@ -16,10 +16,7 @@ namespace DXApplication1.PCCongViec
 {
     public partial class PhanCongCV : Form
     {
-        public string gv = "";
-        public string mh = "";
-        public string lop = "";
-        public string khoa = "";
+        
         //public string idpc = "";
         public PhanCongCV()
         {
@@ -59,12 +56,12 @@ namespace DXApplication1.PCCongViec
             {
                 con.Open();
                 DataTable dt = new DataTable();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select distinct Tenlop from Lop", con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MaNganh,TenNganh from Nganh where TenNganh !='*'", con);
                 dataAdapter.Fill(dt);
                 //dataGridView1.DataSource = dt;
                 cbLop.DataSource = dt;
-                cbLop.DisplayMember = "Tenlop";
-                cbLop.ValueMember = "Tenlop";
+                cbLop.DisplayMember = "TenNganh";
+                cbLop.ValueMember = "MaNganh";
                 
             }
             catch (Exception)
@@ -76,6 +73,7 @@ namespace DXApplication1.PCCongViec
                 con.Close();
             }
             //Load môn
+            /*
             try
             {
                 con.Open();
@@ -95,6 +93,7 @@ namespace DXApplication1.PCCongViec
             {
                 con.Close();
             }
+            //Load khoa
             try
             {
                 con.Open();
@@ -113,7 +112,7 @@ namespace DXApplication1.PCCongViec
             finally
             {
                 con.Close();
-            }
+            } */
         }
         public string createID()
         {
@@ -169,9 +168,9 @@ namespace DXApplication1.PCCongViec
                 con.Open();
                 DataTable dt = new DataTable();
 
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoPC,Hoten,TenMH,Tenlop,Khoahoc " +
-                    "from PhancongCV pc,GiangVien gv,Monhoc mh,Lop l " +
-                    "where pc.MasoGV = gv.MasoGV and pc.MasoLop = l.MasoLop and pc.MasoMH = mh.MasoMH ", con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoPC,Hoten,TenMH,TenNganh,Khoahoc " +
+                    "from PhancongCV pc,GiangVien gv,Monhoc mh,Lop l,Nganh n " +
+                    "where pc.MasoGV = gv.MasoGV and pc.MasoLop = l.MasoLop and pc.MasoMH = mh.MasoMH and l.MaNganh = n.MaNganh ", con);
                 dataAdapter.Fill(dt);
                 dataGridView1.DataSource = dt;
             }
@@ -189,31 +188,12 @@ namespace DXApplication1.PCCongViec
         {
             string khoa = cbKhoa.SelectedValue.ToString();
             string giangvien = cbGV.SelectedValue.ToString();
-            string lop = cbLop.SelectedValue.ToString();
+            string mslop = cbKhoa.SelectedValue.ToString();
             string mh = cbMH.SelectedValue.ToString();
-            string malop = "";
+            
             SqlConnection con = Connect.GetDBConnection();
-            //lấy mã lớp
-            try
-            {
-                con.Open();
-                DataTable dt = new DataTable();
-                SqlDataAdapter ad = new SqlDataAdapter("select MasoLop from Lop where Tenlop=N'"+ lop +"' and KhoaHoc=N'" + khoa + "'", con);
-                ad.Fill(dt);
-                //TenLop= N'"+ lop +"',
-                malop = dt.Rows[0][0].ToString();
-                
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show("Không load được giảng viên!");
-                MessageBox.Show("Tên lớp: "+lop+" Khóa: "+khoa);
-            }
-            finally
-            {
-                con.Close();
-            }
-            if (khoa != "" && giangvien !="" && lop!="" && mh != "")
+           
+            if (khoa != "" && giangvien !="" && mslop!="" && mh != "")
             {
                 //string id = createID();
                 con.Open();
@@ -221,7 +201,7 @@ namespace DXApplication1.PCCongViec
                 //cmd.Parameters.AddWithValue("@id", id);
                 cmd.Parameters.AddWithValue("@gv", giangvien);
                 cmd.Parameters.AddWithValue("@mh", mh);
-                cmd.Parameters.AddWithValue("@l", malop);
+                cmd.Parameters.AddWithValue("@l", mslop);
                 try
                 {
 
@@ -249,31 +229,12 @@ namespace DXApplication1.PCCongViec
         {
             string khoa = cbKhoa.SelectedValue.ToString();
             string giangvien = cbGV.SelectedValue.ToString();
-            string lop = cbLop.SelectedValue.ToString();
+            string mslop = cbKhoa.SelectedValue.ToString();
             string mh = cbMH.SelectedValue.ToString();
-            string malop = "";
+            
             SqlConnection con = Connect.GetDBConnection();
-            //lấy mã lớp
-            try
-            {
-                con.Open();
-                DataTable dt = new DataTable();
-                SqlDataAdapter ad = new SqlDataAdapter("select MasoLop from Lop where Tenlop=N'" + lop + "' and KhoaHoc=N'" + khoa + "'", con);
-                ad.Fill(dt);
-                //TenLop= N'"+ lop +"',
-                malop = dt.Rows[0][0].ToString();
-
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show("Không lấy được mã lớp!");
-                //MessageBox.Show("Tên lớp: " + lop + " Khóa: " + khoa);
-            }
-            finally
-            {
-                con.Close();
-            }
-            if (khoa != "" && giangvien != "" && lop != "" && mh != "")
+           
+            if (khoa != "" && giangvien != "" && mslop != "" && mh != "")
             {
                 string idpc = tbid.Text;
                 
@@ -282,7 +243,7 @@ namespace DXApplication1.PCCongViec
                 
                 cmd.Parameters.AddWithValue("@gv", giangvien);
                 cmd.Parameters.AddWithValue("@mh", mh);
-                cmd.Parameters.AddWithValue("@l", malop);
+                cmd.Parameters.AddWithValue("@l", mslop);
                 cmd.Parameters.AddWithValue("@idpc", idpc);
                 try
                 {
@@ -309,6 +270,10 @@ namespace DXApplication1.PCCongViec
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //clear();
+            string gv = "";
+            string mh = "";
+            string lop = "";
+            string khoa = "";
             
             if (dataGridView1.Rows.Count > 0)
             {
@@ -333,7 +298,7 @@ namespace DXApplication1.PCCongViec
             cbLop.SelectedIndex = indexlop;
             int indexkhoa = cbKhoa.FindString(khoa);
             cbKhoa.SelectedIndex = indexkhoa;
-
+         
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -342,28 +307,9 @@ namespace DXApplication1.PCCongViec
             string giangvien = cbGV.SelectedValue.ToString();
             string lop = cbLop.SelectedValue.ToString();
             string mh = cbMH.SelectedValue.ToString();
-            string malop = "";
+            
             SqlConnection con = Connect.GetDBConnection();
-            //lấy mã lớp
-            try
-            {
-                con.Open();
-                DataTable dt = new DataTable();
-                SqlDataAdapter ad = new SqlDataAdapter("select MasoLop from Lop where Tenlop=N'" + lop + "' and KhoaHoc=N'" + khoa + "'", con);
-                ad.Fill(dt);
-                //TenLop= N'"+ lop +"',
-                malop = dt.Rows[0][0].ToString();
-
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Không lấy được mã lớp!");
-                //MessageBox.Show("Tên lớp: " + lop + " Khóa: " + khoa);
-            }
-            finally
-            {
-                con.Close();
-            }
+           
             if (khoa != "" && giangvien != "" && lop != "" && mh != "")
             {
                 string idpc = tbid.Text;
@@ -371,9 +317,7 @@ namespace DXApplication1.PCCongViec
                 con.Open();
                 SqlCommand cmd = new SqlCommand("delete from PhancongCV where MasoPC=@idpc", con);
                 
-                cmd.Parameters.AddWithValue("@gv", giangvien);
-                cmd.Parameters.AddWithValue("@mh", mh);
-                cmd.Parameters.AddWithValue("@l", malop);
+                
                 cmd.Parameters.AddWithValue("@idpc", idpc);
                 try
                 {
@@ -400,6 +344,87 @@ namespace DXApplication1.PCCongViec
         private void PhanCongCV_DoubleClick(object sender, EventArgs e)
         {
             clear();
+        }
+
+        private void cbLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string mslop ="";
+            string nganh = "";
+            
+            if (cbLop.SelectedIndex != -1)
+            {
+               
+                nganh = cbLop.SelectedValue.ToString();
+            }
+            
+            SqlConnection con = Connect.GetDBConnection();
+            
+            //load khoa 
+
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoLop,KhoaHoc from Lop l, Nganh n where l.MaNganh = n.MaNganh and  n.MaNganh='" + nganh + "'", con);
+                dataAdapter.Fill(dt);
+                //dataGridView1.DataSource = dt;
+                cbKhoa.DataSource = dt;
+                cbKhoa.DisplayMember = "KhoaHoc";
+                cbKhoa.ValueMember = "MasoLop";
+                if(cbKhoa.SelectedIndex != -1)
+                {
+                    if (dt.Rows.Count == 0)
+                    {
+                        cbKhoa.ResetText();
+                        cbKhoa.SelectedIndex = -1;
+                    }
+                } 
+                
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không load được Khoa!");
+            }
+            finally
+            {
+                con.Close();
+            }
+          
+            if(cbKhoa.SelectedIndex != -1)
+            {
+                mslop = cbKhoa.SelectedValue.ToString();
+            }
+            //load mon hoc
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoMH,TenMH from Monhoc mh,Nganh n,Lop l where mh.MaNganh = n.MaNganh and l.MaNganh = n.MaNganh and MasoLop = '" + mslop + "' " +
+                    "union " +
+                    "select MasoMH, TenMH from Monhoc mh, Nganh n, Lop l where mh.MaNganh = n.MaNganh and TenNganh = '*'", con);
+                dataAdapter.Fill(dt);
+                //dataGridView1.DataSource = dt;
+                cbMH.DataSource = dt;
+                cbMH.DisplayMember = "TenMH";
+                cbMH.ValueMember = "MasoMH";
+                if (cbMH.SelectedIndex != -1)
+                {
+                    if (dt.Rows.Count == 0)
+                    {
+                        cbMH.ResetText();
+                        cbMH.SelectedIndex = -1;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không load được Khoa!");
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
