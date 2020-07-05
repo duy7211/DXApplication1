@@ -186,15 +186,16 @@ namespace DXApplication1.PCCongViec
 
         private void btnThem_Click(object sender, EventArgs e)
         {
-            string khoa = cbKhoa.SelectedValue.ToString();
-            string giangvien = cbGV.SelectedValue.ToString();
-            string mslop = cbKhoa.SelectedValue.ToString();
-            string mh = cbMH.SelectedValue.ToString();
+            
             
             SqlConnection con = Connect.GetDBConnection();
            
-            if (khoa != "" && giangvien !="" && mslop!="" && mh != "")
+            if (cbKhoa.SelectedIndex != -1 && cbGV.SelectedIndex != -1 && cbLop.SelectedIndex != -1 && cbMH.SelectedIndex != -1)
             {
+                string khoa = cbKhoa.SelectedValue.ToString();
+                string giangvien = cbGV.SelectedValue.ToString();
+                string mslop = cbKhoa.SelectedValue.ToString();
+                string mh = cbMH.SelectedValue.ToString();
                 //string id = createID();
                 con.Open();
                 SqlCommand cmd = new SqlCommand("insert into PhancongCV(MasoGV,MasoMH,MasoLop) values(@gv,@mh,@l)", con);
@@ -222,20 +223,25 @@ namespace DXApplication1.PCCongViec
                     GetAllPC();
                 }
             }
-            
+            else
+            {
+                MessageBox.Show("Không được bỏ trống dữ liệu!");
+            }
+
         }
 
         private void btnSua_Click(object sender, EventArgs e)
         {
-            string khoa = cbKhoa.SelectedValue.ToString();
-            string giangvien = cbGV.SelectedValue.ToString();
-            string mslop = cbKhoa.SelectedValue.ToString();
-            string mh = cbMH.SelectedValue.ToString();
+           
             
             SqlConnection con = Connect.GetDBConnection();
            
-            if (khoa != "" && giangvien != "" && mslop != "" && mh != "")
+            if (cbKhoa.SelectedIndex != -1 && cbGV.SelectedIndex != -1 && cbLop.SelectedIndex != -1 && cbMH.SelectedIndex != -1)
             {
+                string khoa = cbKhoa.SelectedValue.ToString();
+                string giangvien = cbGV.SelectedValue.ToString();
+                string mslop = cbKhoa.SelectedValue.ToString();
+                string mh = cbMH.SelectedValue.ToString();
                 string idpc = tbid.Text;
                 
                 con.Open();
@@ -265,6 +271,10 @@ namespace DXApplication1.PCCongViec
                     GetAllPC();
                 }
             }
+            else
+            {
+                MessageBox.Show("Không được bỏ trống dữ liệu!");
+            }
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -292,26 +302,24 @@ namespace DXApplication1.PCCongViec
             }
             int indexgv = cbGV.FindString(gv);
             cbGV.SelectedIndex = indexgv;
-            int indexmh = cbMH.FindString(mh);
-            cbMH.SelectedIndex = indexmh;
             int indexlop = cbLop.FindString(lop);
             cbLop.SelectedIndex = indexlop;
             int indexkhoa = cbKhoa.FindString(khoa);
             cbKhoa.SelectedIndex = indexkhoa;
-         
+            int indexmh = cbMH.FindString(mh);
+            cbMH.SelectedIndex = indexmh;
+
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            string khoa = cbKhoa.SelectedValue.ToString();
-            string giangvien = cbGV.SelectedValue.ToString();
-            string lop = cbLop.SelectedValue.ToString();
-            string mh = cbMH.SelectedValue.ToString();
+            
             
             SqlConnection con = Connect.GetDBConnection();
            
-            if (khoa != "" && giangvien != "" && lop != "" && mh != "")
+            if (cbKhoa.SelectedIndex != -1 && cbGV.SelectedIndex != -1 && cbLop.SelectedIndex != -1 && cbMH.SelectedIndex != -1)
             {
+                
                 string idpc = tbid.Text;
                
                 con.Open();
@@ -339,6 +347,10 @@ namespace DXApplication1.PCCongViec
                     GetAllPC();
                 }
             }
+            else
+            {
+                MessageBox.Show("Không được bỏ trống dữ liệu!");
+            }
         }
 
         private void PhanCongCV_DoubleClick(object sender, EventArgs e)
@@ -358,7 +370,13 @@ namespace DXApplication1.PCCongViec
             }
             
             SqlConnection con = Connect.GetDBConnection();
-            
+
+            if (cbKhoa.SelectedIndex != -1)
+            {
+                    cbKhoa.ResetText();
+                    cbKhoa.SelectedIndex = -1;
+                
+            }
             //load khoa 
 
             try

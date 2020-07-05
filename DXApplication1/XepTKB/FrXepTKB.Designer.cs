@@ -166,7 +166,7 @@
             // 
             // Tenlop
             // 
-            this.Tenlop.DataPropertyName = "Tenlop";
+            this.Tenlop.DataPropertyName = "TenNganh";
             this.Tenlop.HeaderText = "Lớp";
             this.Tenlop.Name = "Tenlop";
             this.Tenlop.ReadOnly = true;

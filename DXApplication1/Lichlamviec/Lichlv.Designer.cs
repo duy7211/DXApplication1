@@ -32,13 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label1 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KhoaHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.cmbGV = new System.Windows.Forms.ComboBox();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -47,6 +40,13 @@
             this.tbTengv = new System.Windows.Forms.TextBox();
             this.tbMagv = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.Hoten = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenMH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Thu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenCa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLop = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.KhoaHoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -98,55 +98,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(956, 216);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridView1_CellFormatting);
-            // 
-            // Hoten
-            // 
-            this.Hoten.DataPropertyName = "Hoten";
-            this.Hoten.HeaderText = "Họ tên";
-            this.Hoten.Name = "Hoten";
-            this.Hoten.ReadOnly = true;
-            // 
-            // TenMH
-            // 
-            this.TenMH.DataPropertyName = "TenMH";
-            this.TenMH.HeaderText = "Môn";
-            this.TenMH.Name = "TenMH";
-            this.TenMH.ReadOnly = true;
-            // 
-            // TenPhong
-            // 
-            this.TenPhong.DataPropertyName = "TenPhong";
-            this.TenPhong.HeaderText = "Phòng";
-            this.TenPhong.Name = "TenPhong";
-            this.TenPhong.ReadOnly = true;
-            // 
-            // Thu
-            // 
-            this.Thu.DataPropertyName = "Thu";
-            this.Thu.HeaderText = "Thứ";
-            this.Thu.Name = "Thu";
-            this.Thu.ReadOnly = true;
-            // 
-            // TenCa
-            // 
-            this.TenCa.DataPropertyName = "TenCa";
-            this.TenCa.HeaderText = "Tiết";
-            this.TenCa.Name = "TenCa";
-            this.TenCa.ReadOnly = true;
-            // 
-            // TenLop
-            // 
-            this.TenLop.DataPropertyName = "TenLop";
-            this.TenLop.HeaderText = "Lớp";
-            this.TenLop.Name = "TenLop";
-            this.TenLop.ReadOnly = true;
-            // 
-            // KhoaHoc
-            // 
-            this.KhoaHoc.DataPropertyName = "KhoaHoc";
-            this.KhoaHoc.HeaderText = "Khóa";
-            this.KhoaHoc.Name = "KhoaHoc";
-            this.KhoaHoc.ReadOnly = true;
             // 
             // panel2
             // 
@@ -220,6 +171,55 @@
             this.label2.Size = new System.Drawing.Size(104, 13);
             this.label2.TabIndex = 0;
             this.label2.Text = "Thông tin giảng viên";
+            // 
+            // Hoten
+            // 
+            this.Hoten.DataPropertyName = "Hoten";
+            this.Hoten.HeaderText = "Họ tên";
+            this.Hoten.Name = "Hoten";
+            this.Hoten.ReadOnly = true;
+            // 
+            // TenMH
+            // 
+            this.TenMH.DataPropertyName = "TenMH";
+            this.TenMH.HeaderText = "Môn";
+            this.TenMH.Name = "TenMH";
+            this.TenMH.ReadOnly = true;
+            // 
+            // TenPhong
+            // 
+            this.TenPhong.DataPropertyName = "TenPhong";
+            this.TenPhong.HeaderText = "Phòng";
+            this.TenPhong.Name = "TenPhong";
+            this.TenPhong.ReadOnly = true;
+            // 
+            // Thu
+            // 
+            this.Thu.DataPropertyName = "Thu";
+            this.Thu.HeaderText = "Thứ";
+            this.Thu.Name = "Thu";
+            this.Thu.ReadOnly = true;
+            // 
+            // TenCa
+            // 
+            this.TenCa.DataPropertyName = "TenCa";
+            this.TenCa.HeaderText = "Tiết";
+            this.TenCa.Name = "TenCa";
+            this.TenCa.ReadOnly = true;
+            // 
+            // TenLop
+            // 
+            this.TenLop.DataPropertyName = "TenNganh";
+            this.TenLop.HeaderText = "Lớp";
+            this.TenLop.Name = "TenLop";
+            this.TenLop.ReadOnly = true;
+            // 
+            // KhoaHoc
+            // 
+            this.KhoaHoc.DataPropertyName = "KhoaHoc";
+            this.KhoaHoc.HeaderText = "Khóa";
+            this.KhoaHoc.Name = "KhoaHoc";
+            this.KhoaHoc.ReadOnly = true;
             // 
             // Lichlv
             // 

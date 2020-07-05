@@ -106,9 +106,7 @@ namespace DXApplication1.Lichlamviec
             SqlConnection con = Connect.GetDBConnection();
             con.Open();
             DataTable dt = new DataTable();
-            SqlCommand cmd = new SqlCommand("select Hoten,TenMH,TenPhong,Thu,TenCa,Tenlop,KhoaHoc " +
-                "from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c " +
-                "where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong and gv.MasoGV=@ms  order by Thu,TenCa ",con);
+            SqlCommand cmd = new SqlCommand("select Hoten,TenMH,TenPhong,Thu,TenCa,TenNganh,KhoaHoc from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c, Nganh n  where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and l.MaNganh = n.MaNganh and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong and gv.MasoGV=@ms order by Thu,TenCa", con);
             cmd.Parameters.AddWithValue("@ms", tengv);
             try
             {

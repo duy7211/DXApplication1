@@ -15,6 +15,7 @@ namespace DXApplication1.Lichhoc
     {
         private string tenlop = "";
         private string khoa ="";
+        private string mslop = "";
         public LichHoc()
         {
             InitializeComponent();
@@ -27,15 +28,17 @@ namespace DXApplication1.Lichhoc
             {
                 con.Open();
                 DataTable dt = new DataTable();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter("select distinct Tenlop from Lop", con);
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MaNganh,TenNganh from Nganh where TenNganh !='*'", con);
                 dataAdapter.Fill(dt);
+                //dataGridView1.DataSource = dt;
                 cmblop.DataSource = dt;
-                cmblop.DisplayMember = "Tenlop";
-                cmblop.ValueMember = "Tenlop";
+                cmblop.DisplayMember = "TenNganh";
+                cmblop.ValueMember = "MaNganh";
+
             }
             catch (Exception)
             {
-                MessageBox.Show("Lỗi kết nối !");
+                MessageBox.Show("Không load được lớp học!");
             }
             finally
             {
@@ -46,7 +49,7 @@ namespace DXApplication1.Lichhoc
         private void LichHoc_Load(object sender, EventArgs e)
         {
             GetAlllop();
-            GetAllkhoa();
+            //GetAllkhoa();
             //cmblop.SelectedIndex = 0;
             //cmbKhoa.SelectedIndex = 0;
         }
@@ -74,56 +77,17 @@ namespace DXApplication1.Lichhoc
             }
         }
 
-        private void cmblop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            //DataRowView drv = (DataRowView)cmblop.SelectedItem;
-            //tenlop = drv["TenLop"].ToString();
-            //tenlop = cmblop.SelectedValue.ToString();
-            //DataTable dt = InfoLop();
-
-            /*
-             if (dt.Rows.Count > 0)
-             {
-                 tbMalop.Text = dt.Rows[0]["MasoLop"].ToString();
-                 tbTenlop.Text = dt.Rows[0]["Tenlop"].ToString();
-                 tbkhoa.Text = dt.Rows[0]["KhoaHoc"].ToString();
-
-             } */
-            
-        }
-
-        private void cmbKhoa_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            DataRowView drv = (DataRowView)cmbKhoa.SelectedItem;
-            khoa = drv["KhoaHoc"].ToString();
-            tenlop = cmblop.SelectedValue.ToString();
-            //khoa = cmbKhoa.SelectedValue.ToString();
-            DataTable dt = InfoLop();
-            //MessageBox.Show(tenlop+"-"+khoa);
-            //MessageBox.Show(dt.Rows.Count.ToString());
-            if (dt.Rows.Count > 0)
-                {
-                    tbMalop.Text = dt.Rows[0]["MasoLop"].ToString();
-                    tbTenlop.Text = dt.Rows[0]["Tenlop"].ToString();
-                    tbkhoa.Text = dt.Rows[0]["KhoaHoc"].ToString();
-                    
-                }
-            DataTable lich = getLichhoc();
-            dataGridView1.DataSource = lich;
-
-
-            
-        }
-
+      
         private DataTable InfoLop()
         {
+            
             DataTable dt = new DataTable();
-            if (tenlop != "" && khoa != "")
+            if (cmblop.SelectedIndex != -1 )
             {
                 
                 SqlConnection con = Connect.GetDBConnection();
                 con.Open();
-                SqlCommand cmd = new SqlCommand("select MasoLop,Tenlop,KhoaHoc from Lop where Tenlop=N'" + tenlop+"' and KhoaHoc='"+khoa+"'",con);
+                SqlCommand cmd = new SqlCommand("select MasoLop,KhoaHoc,TenNganh from lop l, nganh n where l.manganh = n.manganh and MasoLop = '" + mslop +"'",con);
                 //cmd.Parameters.AddWithValue("@l", tenlop);
                 //cmd.Parameters.AddWithValue("@k", khoa);
                 try
@@ -148,15 +112,13 @@ namespace DXApplication1.Lichhoc
         private DataTable getLichhoc()
         {
             DataTable dt = new DataTable();
-            if (tenlop != "" && khoa != "")
+            if (cmblop.SelectedIndex != -1 && cmbKhoa.SelectedIndex != -1)
             {
                 SqlConnection con = Connect.GetDBConnection();
                 con.Open();
                 
-                SqlCommand cmd = new SqlCommand("select Hoten,TenMH,TenPhong,Thu,TenCa,Tenlop,KhoaHoc " +
-                    "from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c " +
-                    "where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong and TenLop=N'" + tenlop + "' and KhoaHoc=@k order by Thu,TenCa ", con);
-                cmd.Parameters.AddWithValue("@k", khoa);
+                SqlCommand cmd = new SqlCommand("select Hoten,TenMH,TenPhong,Thu,TenCa,TenNganh,KhoaHoc from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c,Nganh n where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong and l.MaNganh = n.MaNganh and l.MasoLop=@l order by Thu,TenCa ", con);
+                cmd.Parameters.AddWithValue("@l", mslop);
                 dt.Load(cmd.ExecuteReader());
                 con.Close();
             }
@@ -191,6 +153,101 @@ namespace DXApplication1.Lichhoc
                         break;
                 }
             }
+        }
+
+        private void cmblop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            clear();
+            if (cmbKhoa.SelectedIndex != -1)
+            {
+                cmbKhoa.ResetText();
+                cmbKhoa.SelectedIndex = -1;
+
+            }
+            string nganh = "";
+
+            if (cmblop.SelectedIndex != -1)
+            {
+
+                nganh = cmblop.SelectedValue.ToString();
+            }
+            SqlConnection con = Connect.GetDBConnection();
+            try
+            {
+                con.Open();
+                DataTable dt = new DataTable();
+                SqlDataAdapter dataAdapter = new SqlDataAdapter("select MasoLop,KhoaHoc from Lop l, Nganh n where l.MaNganh = n.MaNganh and  n.MaNganh='" + nganh + "'", con);
+                dataAdapter.Fill(dt);
+                //dataGridView1.DataSource = dt;
+                cmbKhoa.DataSource = dt;
+                cmbKhoa.DisplayMember = "KhoaHoc";
+                cmbKhoa.ValueMember = "MasoLop";
+
+                if (cmbKhoa.SelectedIndex != -1)
+                {
+                    if (dt.Rows.Count == 0)
+                    {
+                        cmbKhoa.ResetText();
+                        cmbKhoa.SelectedIndex = -1;
+                    }
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Không load được Khoa!");
+            }
+            finally
+            {
+                con.Close();
+            }
+            //DataRowView drv = (DataRowView)cmblop.SelectedItem;
+            //tenlop = drv["TenLop"].ToString();
+            //tenlop = cmblop.SelectedValue.ToString();
+            //DataTable dt = InfoLop();
+
+            /*
+             if (dt.Rows.Count > 0)
+             {
+                 tbMalop.Text = dt.Rows[0]["MasoLop"].ToString();
+                 tbTenlop.Text = dt.Rows[0]["Tenlop"].ToString();
+                 tbkhoa.Text = dt.Rows[0]["KhoaHoc"].ToString();
+
+             } */
+        }
+
+        private void cmbKhoa_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            if (cmbKhoa.SelectedIndex != -1)
+            {
+                mslop = cmbKhoa.SelectedValue.ToString();
+            }
+            DataRowView drv = (DataRowView)cmbKhoa.SelectedItem;
+            //khoa = drv["KhoaHoc"].ToString();
+            //tenlop = cmblop.SelectedValue.ToString();
+            //khoa = cmbKhoa.SelectedValue.ToString();
+            DataTable dt = InfoLop();
+            //MessageBox.Show(tenlop+"-"+khoa);
+            //MessageBox.Show(dt.Rows.Count.ToString());
+            if (dt.Rows.Count > 0)
+            {
+                tbMalop.Text = dt.Rows[0]["MasoLop"].ToString();
+                tbTenlop.Text = dt.Rows[0]["TenNganh"].ToString();
+                tbkhoa.Text = dt.Rows[0]["KhoaHoc"].ToString();
+
+            }
+            DataTable lich = getLichhoc();
+            dataGridView1.DataSource = lich;
+            
+
+        }
+
+        private void clear()
+        {
+            tbkhoa.Text = "";
+            tbTenlop.Text = "";
+            tbkhoa.Text = "";
         }
     }
 }

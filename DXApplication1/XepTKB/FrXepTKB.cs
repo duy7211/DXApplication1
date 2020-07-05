@@ -197,7 +197,7 @@ namespace DXApplication1.XepTKB
             {
                 con.Open();
                 
-                SqlDataAdapter ap = new SqlDataAdapter("select Hoten,TenMH,TenPhong,Thu,TenCa,Tenlop,KhoaHoc from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong  order by Thu,TenCa ", con);
+                SqlDataAdapter ap = new SqlDataAdapter("select Hoten,TenMH,TenPhong,Thu,TenCa,TenNganh,KhoaHoc from ThoiKB tkb,PhancongCV cv,ThoiGianLamviec tg, GiangVien gv, Monhoc mh,Phong p, Lop l,ca c,Nganh n where tkb.MasoPC = cv.MasoPC and tkb.MasoTG = tg.MasoTG and cv.MasoGV = gv.MasoGV and cv.MasoLop = l.MasoLop and l.MaNganh = n.MaNganh and cv.MasoMH = mh.MasoMH and tg.MasoCa = c.MasoCa and tg.MasoPhong = p.MasoPhong  order by Thu,TenCa ", con);
                 ap.Fill(dt);
                 dataGridView1.DataSource = dt;
                 con.Close();

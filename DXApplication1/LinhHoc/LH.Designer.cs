@@ -135,6 +135,7 @@
             this.cmblop.Name = "cmblop";
             this.cmblop.Size = new System.Drawing.Size(168, 21);
             this.cmblop.TabIndex = 0;
+            this.cmblop.SelectedIndexChanged += new System.EventHandler(this.cmblop_SelectedIndexChanged);
             // 
             // dataGridView1
             // 
@@ -209,7 +210,7 @@
             // 
             // Column1
             // 
-            this.Column1.DataPropertyName = "Tenlop";
+            this.Column1.DataPropertyName = "TenNganh";
             this.Column1.HeaderText = "Lớp";
             this.Column1.Name = "Column1";
             this.Column1.ReadOnly = true;
